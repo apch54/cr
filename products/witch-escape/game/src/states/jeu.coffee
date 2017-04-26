@@ -2,8 +2,12 @@ class @YourGame extends Phacker.GameState
 
     update: ->
         super() #Required
+
         @game.physics.arcade.collide @spriteO.spt, @bgO.pfm
         @spriteO.collide_eny('todo : eny')
+
+        @cameraO.move @spriteO.spt, @bgO
+        @bgO.move_clouds @spriteO.spt
 
     resetPlayer: ->
         console.log "Reset the player"
@@ -16,6 +20,8 @@ class @YourGame extends Phacker.GameState
 
         @bgO = new Phacker.Game.Socle @game
         @spriteO = new Phacker.Game.Sprite @game
+
+        @cameraO = new Phacker.Game.My_camera @game
 
 ###  LOGIC OF YOUR GAME
 # Examples buttons actions

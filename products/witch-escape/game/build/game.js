@@ -14,8 +14,9 @@
         h: this.gm.gameOptions.fullscreen ? 559 : 500
       };
       this.pm.cld = {
-        x0: 0,
-        y0: this.pm.bg.y0
+        x0: -100,
+        y0: this.pm.bg.y0,
+        vx: 100
       };
       this.pm.deco = {
         x0: 0,
@@ -44,7 +45,12 @@
     Socle.prototype.draw_bg = function() {
       this.bg = this.gm.add.sprite(this.pm.bg.x0, this.pm.bg.y0, 'bg_gameplay');
       this.bg.fixedToCamera = true;
-      this.bg = this.gm.add.sprite(this.pm.bg.x0, this.pm.bg.y0, 'cloud');
+      this.cld1 = this.gm.add.sprite(this.pm.cld.x0, this.pm.cld.y0, 'cloud');
+      this.gm.physics.arcade.enable(this.cld1, Phaser.Physics.ARCADE);
+      this.cld1.body.velocity.x = this.pm.cld.vx;
+      this.cld2 = this.gm.add.sprite(this.pm.cld.x0 + this.pm.bg.w, this.pm.cld.y0, 'cloud');
+      this.gm.physics.arcade.enable(this.cld2, Phaser.Physics.ARCADE);
+      this.cld2.body.velocity.x = this.pm.cld.vx;
       this.deco2 = this.gm.add.sprite(this.pm.deco.x0, this.pm.deco.y1_0, 'deco_2');
       this.deco2.fixedToCamera = true;
       this.deco1 = this.gm.add.sprite(this.pm.deco.x0, this.pm.deco.y2_0, 'deco_1');
@@ -58,6 +64,14 @@
       this.pfm = this.gm.add.sprite(this.pm.pfm.x0, this.pm.pfm.y0, 'platform');
       this.gm.physics.arcade.enable(this.pfm, Phaser.Physics.ARCADE);
       return this.pfm.body.immovable = true;
+    };
+
+    Socle.prototype.move_clouds = function(spt) {
+      if (this.cld1.x + 70 + this.pm.bg.w < spt.x) {
+        return this.cld1.x = this.cld2.x + this.pm.bg.w;
+      } else if (this.cld2.x + this.pm.bg.w + 70 < spt.x) {
+        return this.cld2.x = this.cld1.x + this.pm.bg.w;
+      }
     };
 
     return Socle;
@@ -75,13 +89,12 @@
       this.gm = gm;
       this._fle_ = 'Sprite';
       this.pm = this.gm.parameters.spt;
-      this.pm.x0 = 50;
+      this.pm.x0 = 10;
       this.pm.y0 = this.gm.parameters.pfm.y0 - 50;
       this.pm.w = 98;
       this.pm.h = 105;
       this.pm.g = 300;
       this.pm.vyLow = -400;
-      console.log(this._fle_, ': ', this.pm);
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.gravity.y = this.pm.g;
@@ -101,6 +114,38 @@
 
 }).call(this);
 
+
+/*  ecrit par fc le 2017-03-31 */
+
+(function() {
+  Phacker.Game.My_camera = (function() {
+    function My_camera(gm) {
+      this.gm = gm;
+      this._fle_ = 'Camera';
+      this.pm = this.gm.parameters.cam = {};
+      this.pm = {
+        offset: this.gm.gameOptions.fullscreen ? 60 : 100,
+        speed: 5
+      };
+    }
+
+    My_camera.prototype.move = function(spt, socle) {
+      if (spt.x < this.gm.parameters.pfm.w) {
+        return;
+      }
+      if ((this.gm.camera.x - spt.x + this.pm.offset) < -this.pm.speed) {
+        return this.gm.camera.x += this.pm.speed;
+      } else {
+        return this.gm.camera.x = spt.x - this.pm.offset;
+      }
+    };
+
+    return My_camera;
+
+  })();
+
+}).call(this);
+
 (function() {
   var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     hasProp = {}.hasOwnProperty;
@@ -115,7 +160,9 @@
     YourGame.prototype.update = function() {
       YourGame.__super__.update.call(this);
       this.game.physics.arcade.collide(this.spriteO.spt, this.bgO.pfm);
-      return this.spriteO.collide_eny('todo : eny');
+      this.spriteO.collide_eny('todo : eny');
+      this.cameraO.move(this.spriteO.spt, this.bgO);
+      return this.bgO.move_clouds(this.spriteO.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {
@@ -127,7 +174,8 @@
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.world.setBounds(-1000, -1000, 300000, 2000);
       this.bgO = new Phacker.Game.Socle(this.game);
-      return this.spriteO = new Phacker.Game.Sprite(this.game);
+      this.spriteO = new Phacker.Game.Sprite(this.game);
+      return this.cameraO = new Phacker.Game.My_camera(this.game);
     };
 
     return YourGame;

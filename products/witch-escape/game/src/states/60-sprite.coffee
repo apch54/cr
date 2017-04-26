@@ -2,7 +2,7 @@
 #    ___                _   _
 #   / __|  _ __   _ _  (_) | |_   ___
 #   \__ \ | '_ \ | '_| | | |  _| / -_)
-#   |___/ | .__/ |_|   |_|  \__| \___|.
+#   |___/ | .__/ |_|   |_|  \__| \___|
 #         |_|
 class Phacker.Game.Sprite
 
@@ -11,14 +11,12 @@ class Phacker.Game.Sprite
 
         # parameters vx0 defined in socle
         @pm = @gm.parameters.spt
-        @pm.x0 = 50
+        @pm.x0 = 10
         @pm.y0 = @gm.parameters.pfm.y0 - 50
         @pm.w = 98                  # width of the sprite
         @pm.h = 105                 # height of the sprite
         @pm.g = 300                 # gravity
         @pm.vyLow = -400            # velocity on collide ennemy
-
-        console.log @_fle_,': ',@pm
 
         #define pm
         @spt = @gm.add.sprite @pm.x0, @pm.y0  , 'character_sprite'  # 95 x 102
