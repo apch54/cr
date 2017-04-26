@@ -14,7 +14,7 @@ class Phacker.Game.Socle
             w: if @gm.gameOptions.fullscreen  then 375 else 768
             h: if @gm.gameOptions.fullscreen  then 559 else 500
 
-        @pm.cld = {x0: -100, y0: @pm.bg.y0, vx: 100 }
+        @pm.cld = {x0: -220, y0: @pm.bg.y0, vx: 50 }
 
         @pm.deco = {  x0: 0,  h:  240}
         @pm.deco.y1_0 = @pm.bg.h - @pm.deco.h - 50 #for deco1
@@ -48,10 +48,10 @@ class Phacker.Game.Socle
 
         @cld1 = @gm.add.sprite @pm.cld.x0, @pm.cld.y0, 'cloud' # 768x70
         @gm.physics.arcade.enable @cld1,Phaser.Physics.ARCADE
-        @cld1.body.velocity.x = @pm.cld.vx #+ @pm.spt.vx0
+        @cld1.body.velocity.x = -@pm.cld.vx #+ @pm.spt.vx0
         @cld2 = @gm.add.sprite  @pm.cld.x0 + @pm.bg.w, @pm.cld.y0, 'cloud' # 768x70
         @gm.physics.arcade.enable @cld2,Phaser.Physics.ARCADE
-        @cld2.body.velocity.x = @pm.cld.vx #+ @pm.spt.vx0
+        @cld2.body.velocity.x = -@pm.cld.vx #+ @pm.spt.vx0
 
         @deco2 = @gm.add.sprite @pm.deco.x0, @pm.deco.y1_0, 'deco_2' # 768x240
         @deco2.fixedToCamera = true
@@ -68,12 +68,17 @@ class Phacker.Game.Socle
         @pfm   = @gm.add.sprite @pm.pfm.x0, @pm.pfm.y0, 'platform' # 218x220
         @gm.physics.arcade.enable @pfm,Phaser.Physics.ARCADE
         @pfm.body.immovable = true
+        #@pfm.fixedToCamera = true
 
 
     #.----------.----------
     # move background clouds
     #.----------.----------
     move_clouds:(spt) ->
+        #begining of the game
+        if spt.x > @pm.pfm.w
+            @cld1.body.velocity.x = @pm.spt.vx0 - @pm.cld.vx
+            @cld2.body.velocity.x = @pm.spt.vx0 - @pm.cld.vx
 
         if @cld1.x + 70 + @pm.bg.w < spt.x
             @cld1.x = @cld2.x + @pm.bg.w

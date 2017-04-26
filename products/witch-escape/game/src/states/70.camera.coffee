@@ -21,8 +21,6 @@ class Phacker.Game.My_camera
 
     move: (spt,socle)->
         if spt.x < @gm.parameters.pfm.w then return # game begining
-        #socle.cld1.body.velocity.x = @gm.parameters.cld.vx + spt.body.velocity.x
-        #socle.cld2.body.velocity.x = @gm.parameters.cld.vx + spt.body.velocity.x
         if (@gm.camera.x - spt.x + @pm.offset) < -@pm.speed
             @gm.camera.x += @pm.speed # for time reseting : not all at once
         else @gm.camera.x = spt.x - @pm.offset

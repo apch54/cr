@@ -14,9 +14,9 @@
         h: this.gm.gameOptions.fullscreen ? 559 : 500
       };
       this.pm.cld = {
-        x0: -100,
+        x0: -220,
         y0: this.pm.bg.y0,
-        vx: 100
+        vx: 50
       };
       this.pm.deco = {
         x0: 0,
@@ -47,10 +47,10 @@
       this.bg.fixedToCamera = true;
       this.cld1 = this.gm.add.sprite(this.pm.cld.x0, this.pm.cld.y0, 'cloud');
       this.gm.physics.arcade.enable(this.cld1, Phaser.Physics.ARCADE);
-      this.cld1.body.velocity.x = this.pm.cld.vx;
+      this.cld1.body.velocity.x = -this.pm.cld.vx;
       this.cld2 = this.gm.add.sprite(this.pm.cld.x0 + this.pm.bg.w, this.pm.cld.y0, 'cloud');
       this.gm.physics.arcade.enable(this.cld2, Phaser.Physics.ARCADE);
-      this.cld2.body.velocity.x = this.pm.cld.vx;
+      this.cld2.body.velocity.x = -this.pm.cld.vx;
       this.deco2 = this.gm.add.sprite(this.pm.deco.x0, this.pm.deco.y1_0, 'deco_2');
       this.deco2.fixedToCamera = true;
       this.deco1 = this.gm.add.sprite(this.pm.deco.x0, this.pm.deco.y2_0, 'deco_1');
@@ -67,6 +67,10 @@
     };
 
     Socle.prototype.move_clouds = function(spt) {
+      if (spt.x > this.pm.pfm.w) {
+        this.cld1.body.velocity.x = this.pm.spt.vx0 - this.pm.cld.vx;
+        this.cld2.body.velocity.x = this.pm.spt.vx0 - this.pm.cld.vx;
+      }
       if (this.cld1.x + 70 + this.pm.bg.w < spt.x) {
         return this.cld1.x = this.cld2.x + this.pm.bg.w;
       } else if (this.cld2.x + this.pm.bg.w + 70 < spt.x) {
