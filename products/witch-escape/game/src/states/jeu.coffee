@@ -1,3 +1,14 @@
+#          ____
+#      .-'   ,  '-.
+#   .'     _)\_    '.
+#  / ^^    //}       \
+# |       (_;\        |
+# |  >>>===> \`==     |
+#  \      /__/       /
+#    .     ``      .'
+#      '-._____.-'
+
+
 class @YourGame extends Phacker.GameState
 
     update: ->
@@ -19,10 +30,11 @@ class @YourGame extends Phacker.GameState
         @game.world.setBounds(-1000, -1000, 300000, 2000) # offset x, offset y, w, h
 
         @bgO = new Phacker.Game.Socle @game
-        @spriteO = new Phacker.Game.Sprite @game
-        @mouseO = new Phacker.Game.Mouse @game, @spriteO.spt
 
-        @cameraO = new Phacker.Game.My_camera @game
+        @enemiesO = new Phacker.Game.Enemies @game
+        @spriteO  = new Phacker.Game.Sprite @game
+        @mouseO   = new Phacker.Game.Mouse @game, @spriteO.spt
+        @cameraO  = new Phacker.Game.My_camera @game
 
 ###  LOGIC OF YOUR GAME
 # Examples buttons actions

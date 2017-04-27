@@ -85,6 +85,39 @@
 
 }).call(this);
 
+(function() {
+  Phacker.Game.Enemies = (function() {
+    function Enemies(gm) {
+      this.gm = gm;
+      this._fle_ = 'Enemies';
+      this.pm = this.gm.parameters.emy = {
+        x0: this.gm.parameters.pfm.w + 100,
+        y0: this.gm.parameters.pfm.y0,
+        w: 50,
+        h: 24,
+        names: ['enemy2', 'enemy1']
+      };
+      this.emy = this.gm.add.physicsGroup();
+      this.make_1_emy(this.pm.x0, this.pm.y0);
+    }
+
+    Enemies.prototype.make_1_emy = function(x, y) {
+      var e;
+      e = this.emy.create(x, y, this.pm.names[this.gm.rnd.integerInRange(0, 1)]);
+      e.body.immovable = true;
+      return console.log(this._fle_, ': ', this.emy.getAt(0));
+    };
+
+    Enemies.prototype.bind = function(spt) {
+      return this.spt = spt;
+    };
+
+    return Enemies;
+
+  })();
+
+}).call(this);
+
 
 /* fc written on 2017-04-27 */
 
@@ -230,6 +263,7 @@
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.world.setBounds(-1000, -1000, 300000, 2000);
       this.bgO = new Phacker.Game.Socle(this.game);
+      this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
       return this.cameraO = new Phacker.Game.My_camera(this.game);
