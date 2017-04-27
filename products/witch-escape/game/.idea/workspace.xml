@@ -4,7 +4,7 @@
     <list default="true" id="94d17bff-4c34-489f-9d55-8c27c081662b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/70.camera.coffee" afterPath="$PROJECT_DIR$/src/states/70.camera.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/60-sprite.coffee" afterPath="$PROJECT_DIR$/src/states/60-sprite.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,17 +38,17 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="60-sprite.coffee" pinned="false" current-in-tab="false">
+          <file leaf-file-name="60-sprite.coffee" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/states/60-sprite.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="160">
-                  <caret line="22" column="78" lean-forward="true" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
+                <state relative-caret-position="322">
+                  <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="70.camera.coffee" pinned="false" current-in-tab="true">
+          <file leaf-file-name="70.camera.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/states/70.camera.coffee">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="232">
@@ -94,10 +94,10 @@
         <option value="$PROJECT_DIR$/src/states/70-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/60-mouse.coffee" />
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
-        <option value="$PROJECT_DIR$/src/states/60-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/50-mouse.coffee" />
         <option value="$PROJECT_DIR$/src/states/10-socle.coffee" />
         <option value="$PROJECT_DIR$/src/states/70.camera.coffee" />
+        <option value="$PROJECT_DIR$/src/states/60-sprite.coffee" />
       </list>
     </option>
   </component>
@@ -354,7 +354,7 @@
       <workItem from="1493192666257" duration="15618000" />
       <workItem from="1493209580727" duration="103000" />
       <workItem from="1493209699996" duration="6462000" />
-      <workItem from="1493272614919" duration="8270000" />
+      <workItem from="1493272614919" duration="9314000" />
     </task>
     <task id="LOCAL-00001" summary="first commit from phpstorm">
       <created>1493209767341</created>
@@ -391,11 +391,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493281440251</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="speed camera">
+      <created>1493281658156</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1493281658156</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35948000" />
+    <option name="totallyTimeSpent" value="36992000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="431" y="83" width="1436" height="921" extended-state="0" />
@@ -434,7 +441,8 @@
     <MESSAGE value="beging of game : clouds" />
     <MESSAGE value="mouse" />
     <MESSAGE value="clouds bub when running" />
-    <option name="LAST_COMMIT_MESSAGE" value="clouds bub when running" />
+    <MESSAGE value="speed camera" />
+    <option name="LAST_COMMIT_MESSAGE" value="speed camera" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -739,14 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/60-sprite.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="22" column="78" lean-forward="true" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/50-mouse.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -775,6 +775,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/60-sprite.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
         </state>
       </provider>

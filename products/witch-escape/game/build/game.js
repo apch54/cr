@@ -153,6 +153,8 @@
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.gravity.y = this.pm.g;
       this.spt.body.velocity.x = this.pm.vx0;
+      this.anim_spt = this.spt.animations.add('anim', [0, 1, 2, 3], 15, true);
+      this.spt.animations.play('anim');
     }
 
     Sprite.prototype.collide_eny = function(eny) {

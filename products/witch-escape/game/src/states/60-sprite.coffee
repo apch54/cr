@@ -26,6 +26,9 @@ class Phacker.Game.Sprite
         @spt.body.gravity.y  = @pm.g
         @spt.body.velocity.x = @pm.vx0
 
+        @anim_spt = @spt.animations.add 'anim', [0, 1, 2, 3], 15, true
+        @spt.animations.play 'anim'
+
     #.----------.----------
     # collide sprite with ennemy
     # and test sprite on platform
