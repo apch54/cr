@@ -9,25 +9,29 @@ class Phacker.Game.Socle
         @pm.spt = { vx0: 120}
 
         @pm.bg = # background
-            x0: 0
+            x0: 0 # initial location
             y0: 48
             w: if @gm.gameOptions.fullscreen  then 375 else 768
             h: if @gm.gameOptions.fullscreen  then 559 else 500
 
-        @pm.cld = {x0: -220, y0: @pm.bg.y0, vx: 40 }
+        @pm.cld =
+            x0: -220 # initial location
+            y0: @pm.bg.y0
+            vx: 40
+            w:  768
 
         @pm.deco = {  x0: 0,  h:  240}
         @pm.deco.y1_0 = @pm.bg.h - @pm.deco.h - 50 #for deco1
         @pm.deco.y2_0 = @pm.bg.h - @pm.deco.h   #for deco2
 
         @pm.sea =
-            x0:  0
+            x0:  0 # initial location
             h1:  64 # seas have'nt same height
             h2:  59
             h3:  52
-        @pm.sea.y3_0 = @pm.bg.h - @pm.sea.h1 #sea3
+        @pm.sea.y3_0 = @pm.bg.h - @pm.sea.h1  #sea3
         @pm.sea.y2_0 = @pm.bg.h - @pm.sea.h2  #sea2
-        @pm.sea.y1_0 = @pm.bg.h - @pm.sea.h3 #sea1
+        @pm.sea.y1_0 = @pm.bg.h - @pm.sea.h3  #sea1
 
         #platform
         @pm.pfm =
@@ -49,7 +53,7 @@ class Phacker.Game.Socle
         @cld1 = @gm.add.sprite @pm.cld.x0, @pm.cld.y0, 'cloud' # 768x70
         @gm.physics.arcade.enable @cld1,Phaser.Physics.ARCADE
         @cld1.body.velocity.x = -@pm.cld.vx #+ @pm.spt.vx0
-        @cld2 = @gm.add.sprite  @pm.cld.x0 + @pm.bg.w, @pm.cld.y0, 'cloud' # 768x70
+        @cld2 = @gm.add.sprite  @pm.cld.x0 + @pm.cld.w, @pm.cld.y0, 'cloud' # 768x70
         @gm.physics.arcade.enable @cld2,Phaser.Physics.ARCADE
         @cld2.body.velocity.x = -@pm.cld.vx #+ @pm.spt.vx0
 
@@ -74,13 +78,14 @@ class Phacker.Game.Socle
     #.----------.----------
     # move background clouds
     #.----------.----------
-    move_clouds:(spt) ->
-        #begining of the game
+    move_clouds:(spt) -># sp
+        # begining of the game sprite's on platfom
         if spt.x > @pm.pfm.w
             @cld1.body.velocity.x = @pm.spt.vx0 - @pm.cld.vx
             @cld2.body.velocity.x = @pm.spt.vx0 - @pm.cld.vx
 
-        if @cld1.x + 70 + @pm.bg.w < spt.x
-            @cld1.x = @cld2.x + @pm.bg.w
-        else if @cld2.x + @pm.bg.w + 70 < spt.x
-            @cld2.x = @cld1.x + @pm.bg.w
+        # sprite'snt on platfom anymore
+        if @cld1.x + @pm.cld.w + 70 < spt.x
+            @cld1.x = @cld2.x + @pm.cld.w
+        else if @cld2.x + @pm.cld.w + 70 < spt.x
+            @cld2.x = @cld1.x + @pm.cld.w

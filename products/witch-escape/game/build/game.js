@@ -16,7 +16,8 @@
       this.pm.cld = {
         x0: -220,
         y0: this.pm.bg.y0,
-        vx: 40
+        vx: 40,
+        w: 768
       };
       this.pm.deco = {
         x0: 0,
@@ -48,7 +49,7 @@
       this.cld1 = this.gm.add.sprite(this.pm.cld.x0, this.pm.cld.y0, 'cloud');
       this.gm.physics.arcade.enable(this.cld1, Phaser.Physics.ARCADE);
       this.cld1.body.velocity.x = -this.pm.cld.vx;
-      this.cld2 = this.gm.add.sprite(this.pm.cld.x0 + this.pm.bg.w, this.pm.cld.y0, 'cloud');
+      this.cld2 = this.gm.add.sprite(this.pm.cld.x0 + this.pm.cld.w, this.pm.cld.y0, 'cloud');
       this.gm.physics.arcade.enable(this.cld2, Phaser.Physics.ARCADE);
       this.cld2.body.velocity.x = -this.pm.cld.vx;
       this.deco2 = this.gm.add.sprite(this.pm.deco.x0, this.pm.deco.y1_0, 'deco_2');
@@ -71,10 +72,10 @@
         this.cld1.body.velocity.x = this.pm.spt.vx0 - this.pm.cld.vx;
         this.cld2.body.velocity.x = this.pm.spt.vx0 - this.pm.cld.vx;
       }
-      if (this.cld1.x + 70 + this.pm.bg.w < spt.x) {
-        return this.cld1.x = this.cld2.x + this.pm.bg.w;
-      } else if (this.cld2.x + this.pm.bg.w + 70 < spt.x) {
-        return this.cld2.x = this.cld1.x + this.pm.bg.w;
+      if (this.cld1.x + this.pm.cld.w + 70 < spt.x) {
+        return this.cld1.x = this.cld2.x + this.pm.cld.w;
+      } else if (this.cld2.x + this.pm.cld.w + 70 < spt.x) {
+        return this.cld2.x = this.cld1.x + this.pm.cld.w;
       }
     };
 
