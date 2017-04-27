@@ -16,7 +16,7 @@
       this.pm.cld = {
         x0: -220,
         y0: this.pm.bg.y0,
-        vx: 50
+        vx: 40
       };
       this.pm.deco = {
         x0: 0,
@@ -85,6 +85,54 @@
 }).call(this);
 
 
+/* fc written on 2017-04-27 */
+
+(function() {
+  Phacker.Game.Mouse = (function() {
+    function Mouse(gm, spt) {
+      this.gm = gm;
+      this.spt = spt;
+      this._fle_ = 'Mouse';
+      this.pm = this.gm.parameters.btn = {
+        dx: this.gm.parameters.bg.w / 6,
+        y: 500,
+        w: 55,
+        h: 55
+      };
+      this.pm.y = this.gm.parameters.bg.h - this.pm.h - 20;
+      this.pm.leftX = this.gm.parameters.bg.w / 2 - this.gm.parameters.bg.w / 10 - this.pm.w;
+      this.pm.rightX = this.gm.parameters.bg.w / 2 + this.gm.parameters.bg.w / 10;
+      this.draw_buttons();
+    }
+
+    Mouse.prototype.draw_buttons = function() {
+      this.l_btn = this.gm.add.button(this.pm.leftX, this.pm.y, 'left_btn', this.on_tapUp, this, 1, 1, 0);
+      this.l_btn.fixedToCamera = true;
+      this.l_btn.onInputDown.add(this.on_tapDownLeft, this);
+      this.r_btn = this.gm.add.button(this.pm.rightX, this.pm.y, 'right_btn', this.on_tapUp, this, 1, 1, 0);
+      this.r_btn.fixedToCamera = true;
+      return this.r_btn.onInputDown.add(this.on_tapDownRight, this);
+    };
+
+    Mouse.prototype.on_tapUp = function() {
+      return this.spt.body.velocity.x = this.gm.parameters.spt.vx0;
+    };
+
+    Mouse.prototype.on_tapDownLeft = function() {
+      return this.spt.body.velocity.x -= this.gm.parameters.spt.dvx0;
+    };
+
+    Mouse.prototype.on_tapDownRight = function() {
+      return this.spt.body.velocity.x += this.gm.parameters.spt.dvx0;
+    };
+
+    return Mouse;
+
+  })();
+
+}).call(this);
+
+
 /*  written by fc on 2017-04-25 */
 
 (function() {
@@ -99,6 +147,7 @@
       this.pm.h = 105;
       this.pm.g = 300;
       this.pm.vyLow = -400;
+      this.pm.dvx0 = this.pm.vx0 / 3;
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.gravity.y = this.pm.g;
@@ -179,6 +228,7 @@
       this.game.world.setBounds(-1000, -1000, 300000, 2000);
       this.bgO = new Phacker.Game.Socle(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
+      this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
       return this.cameraO = new Phacker.Game.My_camera(this.game);
     };
 

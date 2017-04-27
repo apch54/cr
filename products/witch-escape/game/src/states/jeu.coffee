@@ -20,6 +20,7 @@ class @YourGame extends Phacker.GameState
 
         @bgO = new Phacker.Game.Socle @game
         @spriteO = new Phacker.Game.Sprite @game
+        @mouseO = new Phacker.Game.Mouse @game, @spriteO.spt
 
         @cameraO = new Phacker.Game.My_camera @game
 

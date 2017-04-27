@@ -14,7 +14,7 @@ class Phacker.Game.Socle
             w: if @gm.gameOptions.fullscreen  then 375 else 768
             h: if @gm.gameOptions.fullscreen  then 559 else 500
 
-        @pm.cld = {x0: -220, y0: @pm.bg.y0, vx: 50 }
+        @pm.cld = {x0: -220, y0: @pm.bg.y0, vx: 40 }
 
         @pm.deco = {  x0: 0,  h:  240}
         @pm.deco.y1_0 = @pm.bg.h - @pm.deco.h - 50 #for deco1
