@@ -179,7 +179,7 @@
       this.pm = this.gm.parameters.cam = {};
       this.pm = {
         offset: this.gm.gameOptions.fullscreen ? 60 : 100,
-        speed: 5
+        speed: 4
       };
     }
 
