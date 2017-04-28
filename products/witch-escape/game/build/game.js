@@ -307,10 +307,10 @@
     YourGame.prototype.update = function() {
       YourGame.__super__.update.call(this);
       this._fle_ = 'Update';
-      this.game.physics.arcade.collide(this.spriteO.spt, this.bgO.pfm);
+      this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
       console.log(this._fle_, ': ', this.spriteO.collide_emy(this.enemiesO.emy));
-      this.cameraO.move(this.spriteO.spt, this.bgO);
-      return this.bgO.move_clouds(this.spriteO.spt);
+      this.cameraO.move(this.spriteO.spt, this.socleO);
+      return this.socleO.move_clouds(this.spriteO.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {
@@ -321,7 +321,7 @@
       YourGame.__super__.create.call(this);
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.world.setBounds(-1000, -1000, 300000, 2000);
-      this.bgO = new Phacker.Game.Socle(this.game);
+      this.socleO = new Phacker.Game.Socle(this.game);
       this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
