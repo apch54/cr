@@ -106,7 +106,7 @@
     Enemies.prototype.init = function() {
       var dx, i, j, ref, results, xx;
       xx = this.pm.x0;
-      dx = 40 + this.pm.w;
+      dx = 100 + this.pm.w;
       results = [];
       for (i = j = 1, ref = this.pm.nb; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
         this.make_1_emy(xx, this.pm.y0);
@@ -202,7 +202,7 @@
       this.pm.x0 = 10;
       this.pm.y0 = this.gm.parameters.pfm.y0 - 50;
       this.pm.w = 98;
-      this.pm.h = 105;
+      this.pm.h = 45;
       this.pm.g = 350;
       this.pm.vy = {
         low: -500,
@@ -211,9 +211,10 @@
       this.pm.vy;
       this.pm.dvx0 = this.pm.vx0 / 3;
       this.pm.top = 100;
-      this.pm.message_emy = "not yet";
+      this.pm.mes_emy = "not yet";
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
+      this.spt.body.setSize(25, 45, 5, 0);
       this.spt.body.bounce.y = 1;
       this.spt.body.gravity.y = this.pm.g;
       this.spt.body.velocity.x = this.pm.vx0;
@@ -234,13 +235,15 @@
       }, function(spt, emy) {
         return this.when_collide_with_emy(spt, emy);
       }, this)) {
-        return this.pm.message;
+        return this.pm.mes_emy;
       }
       return 'nothing';
     };
 
     Sprite.prototype.when_collide_with_emy = function(spt, emy) {
-      this.pm.message = 'collided';
+      this.pm.mes_emy = 'collided';
+      spt.body.velocity.y = -this.pm.vy.low;
+      console.log(this._fle_, ': ', spt.y + this.pm.h, emy.y);
       return true;
     };
 
@@ -295,8 +298,9 @@
 
     YourGame.prototype.update = function() {
       YourGame.__super__.update.call(this);
+      this._fle_ = 'Update';
       this.game.physics.arcade.collide(this.spriteO.spt, this.bgO.pfm);
-      this.spriteO.collide_emy(this.enemiesO.emy);
+      console.log(this._fle_, ': ', this.spriteO.collide_emy(this.enemiesO.emy));
       this.cameraO.move(this.spriteO.spt, this.bgO);
       return this.bgO.move_clouds(this.spriteO.spt);
     };

@@ -1,9 +1,9 @@
 #          ____
-#      .-'   ,  '-.
+#      .-'     '-.
 #   .'     _)\_    '.
-#  / ^^    //}       \
+#  / fc    //}       \
 # |       (_;\        |
-# |  >>>===> \`==     |
+# | >|||---> \`--     |
 #  \      /__/       /
 #    .     ``      .'
 #      '-._____.-'
@@ -13,9 +13,10 @@ class @YourGame extends Phacker.GameState
 
     update: ->
         super() #Required
+        @_fle_ = 'Update'
 
         @game.physics.arcade.collide @spriteO.spt, @bgO.pfm
-        @spriteO.collide_emy(@enemiesO.emy)
+        console.log @_fle_,': ',@spriteO.collide_emy(@enemiesO.emy)
 
         @cameraO.move @spriteO.spt, @bgO
         @bgO.move_clouds @spriteO.spt

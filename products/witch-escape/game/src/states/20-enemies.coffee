@@ -21,7 +21,7 @@ class Phacker.Game.Enemies
     #.----------.----------
     init:() ->
         xx = @pm.x0
-        dx = 40 + @pm.w
+        dx = 100 + @pm.w
         for i in [1..@pm.nb]
             @make_1_emy(xx, @pm.y0)
             xx =  @last().x + dx
