@@ -96,7 +96,7 @@
         w: 50,
         h: 24,
         names: ['enemy2', 'enemy1'],
-        nb: 7
+        nb: 5
       };
       this.emy = this.gm.add.physicsGroup();
       this.emy.enableBody = true;
@@ -106,12 +106,12 @@
     Enemies.prototype.init = function() {
       var dx, i, j, ref, results, xx;
       xx = this.pm.x0;
-      dx = 20 + this.pm.w;
+      dx = 40 + this.pm.w;
       results = [];
       for (i = j = 1, ref = this.pm.nb; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
         this.make_1_emy(xx, this.pm.y0);
-        console.log(this._fle_, ': ', this.emy.children.length);
-        results.push(xx = this.emy.getAt(this.emy.children.length - 1).x + dx);
+        console.log(this._fle_, ': ', this.last());
+        results.push(xx = this.last().x + dx);
       }
       return results;
     };
@@ -123,6 +123,14 @@
       anim = e.animations.add('anim', [0, 1, 2, 3], 5, true);
       e.animations.play('anim');
       return e.touched = false;
+    };
+
+    Enemies.prototype.len = function() {
+      return this.emy.children.length;
+    };
+
+    Enemies.prototype.last = function() {
+      return this.emy.getAt(this.emy.children.length - 1);
     };
 
     Enemies.prototype.bind = function(spt) {
@@ -196,9 +204,14 @@
       this.pm.y0 = this.gm.parameters.pfm.y0 - 50;
       this.pm.w = 98;
       this.pm.h = 105;
-      this.pm.g = 300;
-      this.pm.vyLow = -400;
+      this.pm.g = 350;
+      this.pm.vy = {
+        low: -500,
+        top: 100
+      };
+      this.pm.vy;
       this.pm.dvx0 = this.pm.vx0 / 3;
+      this.pm.top = 100;
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.gravity.y = this.pm.g;
@@ -210,7 +223,10 @@
     Sprite.prototype.collide_eny = function(eny) {
       var ref;
       if ((this.gm.parameters.pfm.w - 20 < (ref = this.spt.x) && ref < this.gm.parameters.pfm.w)) {
-        return this.spt.body.velocity.y = this.pm.vyLow;
+        this.spt.body.velocity.y = this.pm.vy.low;
+      }
+      if (this.spt.y < this.pm.top) {
+        return this.spt.body.velocity.y = this.pm.vy.top;
       }
     };
 

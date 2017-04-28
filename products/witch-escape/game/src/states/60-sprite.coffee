@@ -11,13 +11,15 @@ class Phacker.Game.Sprite
 
         # IMPORTANT : parameters @pm.vx0 is defined in socle
         @pm = @gm.parameters.spt
-        @pm.x0 = 10
-        @pm.y0 = @gm.parameters.pfm.y0 - 50
-        @pm.w = 98                  # width of the sprite
-        @pm.h = 105                 # height of the sprite
-        @pm.g = 300                 # gravity
-        @pm.vyLow = -400            # velocity on collide ennemy
-        @pm.dvx0 = @pm.vx0 / 3       # velocity variation on tap
+        @pm.x0  = 10
+        @pm.y0  = @gm.parameters.pfm.y0 - 50
+        @pm.w   = 98                  # width of the sprite
+        @pm.h   = 105                 # height of the sprite
+        @pm.g   = 350                 # gravity
+        @pm.vy  = {low: -500,   top: 100}    # velocity on collide ennemy
+        @pm.vy
+        @pm.dvx0= @pm.vx0 / 3        # velocity variation on tap
+        @pm.top = 100                # top boundary
 
         #define pm
         @spt = @gm.add.sprite @pm.x0, @pm.y0  , 'character_sprite'  # 95 x 102
@@ -37,4 +39,7 @@ class Phacker.Game.Sprite
 
         # is sprite on platform
         if @gm.parameters.pfm.w - 20 < @spt.x < @gm.parameters.pfm.w
-            @spt.body.velocity.y = @pm.vyLow
+            @spt.body.velocity.y = @pm.vy.low
+
+        #bounce on top
+        if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top

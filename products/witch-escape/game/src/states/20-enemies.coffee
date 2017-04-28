@@ -9,7 +9,7 @@ class Phacker.Game.Enemies
             w: 50
             h: 24
             names:['enemy2','enemy1',]
-            nb: 7 # number of enrmies in the group
+            nb: 5 # number of enrmies in the group
 
         @emy = @gm.add.physicsGroup()
         @emy.enableBody = true
@@ -21,11 +21,12 @@ class Phacker.Game.Enemies
     #.----------.----------
     init:() ->
         xx = @pm.x0
-        dx = 20 + @pm.w
+        dx = 40 + @pm.w
         for i in [1..@pm.nb]
             @make_1_emy(xx, @pm.y0)
-            console.log @_fle_,': ',@emy.children.length
-            xx =  @emy.getAt(@emy.children.length - 1).x + dx
+            console.log @_fle_,': ', @last()
+            xx =  @last().x + dx
+
 
     #.----------.----------
     # make only one enemy
@@ -39,6 +40,8 @@ class Phacker.Game.Enemies
         #console.log @_fle_,': ',@emy.getAt(0)
 
     #.----------.----------
-    # binder with sprite
+    # some tools
     #.----------.----------
-    bind:(spt)-> @spt=spt
+    len:-> @emy.children.length # len enemy
+    last:-> @emy.getAt( @emy.children.length - 1 )
+    bind:(spt)-> @spt = spt
