@@ -6,7 +6,7 @@ class Phacker.Game.Socle
         @pm = @gm.parameters = {}
 
         # more easy to define here some sprte's parameters
-        @pm.spt = { vx0: 120}
+        @pm.spt = { vx0: 110}
 
         @pm.bg = # background
             x0: 0 # initial location

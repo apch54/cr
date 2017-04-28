@@ -5,7 +5,7 @@
       this._fle_ = 'Socle';
       this.pm = this.gm.parameters = {};
       this.pm.spt = {
-        vx0: 120
+        vx0: 110
       };
       this.pm.bg = {
         x0: 0,
@@ -96,20 +96,25 @@
         w: 50,
         h: 24,
         names: ['enemy2', 'enemy1'],
-        nb: 5
+        nb: 5,
+        dx: 70,
+        ddx: .20
       };
+      this.pm.y = [this.pm.y0 + 40, this.pm.y0, this.pm.y0 - 40, this.pm.y0 - 80];
       this.emy = this.gm.add.physicsGroup();
       this.emy.enableBody = true;
       this.init();
     }
 
     Enemies.prototype.init = function() {
-      var dx, i, j, ref, results, xx;
-      xx = this.pm.x0;
-      dx = 100 + this.pm.w;
+      var dx, i, j, ref, results, xx, yy;
+      dx = this.pm.w + this.pm.dx + Math.floor(this.gm.ge.score / 60) * this.pm.dx * this.pm.ddx;
+      this.make_1_emy(this.pm.x0, this.pm.y0);
+      xx = this.pm.x0 + dx;
       results = [];
-      for (i = j = 1, ref = this.pm.nb; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-        this.make_1_emy(xx, this.pm.y0);
+      for (i = j = 2, ref = this.pm.nb; 2 <= ref ? j <= ref : j >= ref; i = 2 <= ref ? ++j : --j) {
+        yy = this.pm.y[this.gm.rnd.integerInRange(1, 2)];
+        this.make_1_emy(xx, yy);
         results.push(xx = this.last().x + dx);
       }
       return results;
@@ -206,11 +211,11 @@
       this.pm.g = 350;
       this.pm.vy = {
         low: -500,
-        top: 100
+        top: 120
       };
       this.pm.vy;
-      this.pm.dvx0 = this.pm.vx0 / 3;
-      this.pm.top = 100;
+      this.pm.dvx0 = this.pm.vx0 / 2;
+      this.pm.top = this.gm.gameOptions.fullscreen ? 140 : 90;
       this.pm.mes_emy = "not yet";
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);

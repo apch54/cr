@@ -10,6 +10,11 @@ class Phacker.Game.Enemies
             h: 24
             names:['enemy2','enemy1',]
             nb: 5 # number of enrmies in the group
+            dx: 70
+            ddx: .20 # dx variation, depending on @gm.ge.score
+        #position of enemy (sweeper)
+        @pm.y =  [@pm.y0 + 40 ,@pm.y0, @pm.y0 - 40,@pm.y0 - 80]
+
 
         @emy = @gm.add.physicsGroup()
         @emy.enableBody = true
@@ -20,10 +25,15 @@ class Phacker.Game.Enemies
     # initialisation of enemies : make nb emy
     #.----------.----------
     init:() ->
-        xx = @pm.x0
-        dx = 100 + @pm.w
-        for i in [1..@pm.nb]
-            @make_1_emy(xx, @pm.y0)
+        dx = @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
+
+        #first sweeper
+        @make_1_emy(@pm.x0, @pm.y0)
+        xx =  @pm.x0 + dx
+
+        for i in [2..@pm.nb]
+            yy = @pm.y[@gm.rnd.integerInRange(1,2)]
+            @make_1_emy(xx, yy)
             xx =  @last().x + dx
 
 
