@@ -24,7 +24,6 @@ class Phacker.Game.Enemies
         dx = 40 + @pm.w
         for i in [1..@pm.nb]
             @make_1_emy(xx, @pm.y0)
-            console.log @_fle_,': ', @last()
             xx =  @last().x + dx
 
 
@@ -37,7 +36,6 @@ class Phacker.Game.Enemies
         anim = e.animations.add 'anim', [0, 1, 2, 3], 5, true
         e.animations.play 'anim'
         e.touched = false
-        #console.log @_fle_,': ',@emy.getAt(0)
 
     #.----------.----------
     # some tools

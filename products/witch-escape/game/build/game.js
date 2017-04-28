@@ -110,7 +110,6 @@
       results = [];
       for (i = j = 1, ref = this.pm.nb; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
         this.make_1_emy(xx, this.pm.y0);
-        console.log(this._fle_, ': ', this.last());
         results.push(xx = this.last().x + dx);
       }
       return results;
@@ -212,22 +211,37 @@
       this.pm.vy;
       this.pm.dvx0 = this.pm.vx0 / 3;
       this.pm.top = 100;
+      this.pm.message_emy = "not yet";
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
+      this.spt.body.bounce.y = 1;
       this.spt.body.gravity.y = this.pm.g;
       this.spt.body.velocity.x = this.pm.vx0;
       this.anim_spt = this.spt.animations.add('anim', [0, 1, 2, 3], 15, true);
       this.spt.animations.play('anim');
     }
 
-    Sprite.prototype.collide_eny = function(eny) {
+    Sprite.prototype.collide_emy = function(emy) {
       var ref;
       if ((this.gm.parameters.pfm.w - 20 < (ref = this.spt.x) && ref < this.gm.parameters.pfm.w)) {
         this.spt.body.velocity.y = this.pm.vy.low;
       }
       if (this.spt.y < this.pm.top) {
-        return this.spt.body.velocity.y = this.pm.vy.top;
+        this.spt.body.velocity.y = this.pm.vy.top;
       }
+      if (this.gm.physics.arcade.collide(this.spt, emy, function() {
+        return true;
+      }, function(spt, emy) {
+        return this.when_collide_with_emy(spt, emy);
+      }, this)) {
+        return this.pm.message;
+      }
+      return 'nothing';
+    };
+
+    Sprite.prototype.when_collide_with_emy = function(spt, emy) {
+      this.pm.message = 'collided';
+      return true;
     };
 
     return Sprite;
@@ -282,7 +296,7 @@
     YourGame.prototype.update = function() {
       YourGame.__super__.update.call(this);
       this.game.physics.arcade.collide(this.spriteO.spt, this.bgO.pfm);
-      this.spriteO.collide_eny('todo : eny');
+      this.spriteO.collide_emy(this.enemiesO.emy);
       this.cameraO.move(this.spriteO.spt, this.bgO);
       return this.bgO.move_clouds(this.spriteO.spt);
     };

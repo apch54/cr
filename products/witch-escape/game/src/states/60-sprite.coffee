@@ -16,15 +16,16 @@ class Phacker.Game.Sprite
         @pm.w   = 98                  # width of the sprite
         @pm.h   = 105                 # height of the sprite
         @pm.g   = 350                 # gravity
-        @pm.vy  = {low: -500,   top: 100}    # velocity on collide ennemy
+        @pm.vy  = {low: -500,   top: 100}    # velocity on collide enemy
         @pm.vy
         @pm.dvx0= @pm.vx0 / 3        # velocity variation on tap
         @pm.top = 100                # top boundary
+        @pm.message_emy = "not yet"  # message returned when sprite collide
 
         #define pm
         @spt = @gm.add.sprite @pm.x0, @pm.y0  , 'character_sprite'  # 95 x 102
         @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
-        #@spt.body.bounce.y = 0
+        @spt.body.bounce.y = 1
         @spt.body.gravity.y  = @pm.g
         @spt.body.velocity.x = @pm.vx0
 
@@ -32,10 +33,10 @@ class Phacker.Game.Sprite
         @spt.animations.play 'anim'
 
     #.----------.----------
-    # collide sprite with ennemy
+    # collide sprite with enemy
     # and test sprite on platform
     #.----------.----------
-    collide_eny: (eny) -> # collide with enemy
+    collide_emy: (emy) -> # collide with enemy
 
         # is sprite on platform
         if @gm.parameters.pfm.w - 20 < @spt.x < @gm.parameters.pfm.w
@@ -43,3 +44,19 @@ class Phacker.Game.Sprite
 
         #bounce on top
         if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top
+
+        if @gm.physics.arcade.collide(
+            @spt, emy
+            -> return true
+            (spt, emy)-> @when_collide_with_emy(spt, emy)
+            @
+        ) then return @pm.message
+        return 'nothing'
+
+    #.----------.----------
+
+    when_collide_with_emy:(spt, emy) ->
+        @pm.message = 'collided'
+        return true
+
+

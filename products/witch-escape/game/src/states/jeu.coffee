@@ -15,7 +15,7 @@ class @YourGame extends Phacker.GameState
         super() #Required
 
         @game.physics.arcade.collide @spriteO.spt, @bgO.pfm
-        @spriteO.collide_eny('todo : eny')
+        @spriteO.collide_emy(@enemiesO.emy)
 
         @cameraO.move @spriteO.spt, @bgO
         @bgO.move_clouds @spriteO.spt
