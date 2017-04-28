@@ -33,6 +33,8 @@ class Phacker.Game.Enemies
     make_1_emy: (x,y) ->
         e = @emy.create x, y, @pm.names[@gm.rnd.integerInRange(0,1)]
         e.body.immovable = true
+        anim = e.animations.add 'anim', [0, 1, 2, 3], 5, true
+        e.animations.play 'anim'
         e.touched = false
         #console.log @_fle_,': ',@emy.getAt(0)
 

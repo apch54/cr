@@ -117,9 +117,11 @@
     };
 
     Enemies.prototype.make_1_emy = function(x, y) {
-      var e;
+      var anim, e;
       e = this.emy.create(x, y, this.pm.names[this.gm.rnd.integerInRange(0, 1)]);
       e.body.immovable = true;
+      anim = e.animations.add('anim', [0, 1, 2, 3], 5, true);
+      e.animations.play('anim');
       return e.touched = false;
     };
 
