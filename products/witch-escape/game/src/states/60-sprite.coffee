@@ -42,8 +42,10 @@ class Phacker.Game.Sprite
 
         #at the begining of the game
         # is sprite on platform
-        if @gm.parameters.pfm.w - 20 < @spt.x < @gm.parameters.pfm.w
+
+        if @gm.parameters.pfm.w - 40 < @spt.x < @gm.parameters.pfm.w - 35
             @spt.body.velocity.y = @pm.vy.low
+            console.log @_fle_,': ',@gm.parameters.pfm.w - 20,@spt.x ,@gm.parameters.pfm.w - 15
 
         #bounce on top ?
         if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top

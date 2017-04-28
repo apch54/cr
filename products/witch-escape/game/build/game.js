@@ -91,12 +91,12 @@
       this.gm = gm;
       this._fle_ = 'Enemies';
       this.pm = this.gm.parameters.emy = {
-        x0: this.gm.parameters.pfm.w + 100,
+        x0: this.gm.parameters.pfm.w + 80,
         y0: this.gm.parameters.pfm.y0,
         w: 50,
         h: 24,
         names: ['enemy2', 'enemy1'],
-        nb: 5,
+        nb: this.gm.gameOptions.fullscreen ? 4 : 7,
         dx: 70,
         ddx: .20
       };
@@ -108,7 +108,7 @@
 
     Enemies.prototype.init = function() {
       var dx, i, j, ref, results, xx, yy;
-      dx = this.pm.w + this.pm.dx + Math.floor(this.gm.ge.score / 60) * this.pm.dx * this.pm.ddx;
+      dx = this.fdx();
       this.make_1_emy(this.pm.x0, this.pm.y0);
       xx = this.pm.x0 + dx;
       results = [];
@@ -129,12 +129,26 @@
       return e.touched = false;
     };
 
+    Enemies.prototype.create_destroy = function() {
+      var em0, x3;
+      em0 = this.emy.getAt(0);
+      if (this.gm.camera.x > em0.x + this.pm.w) {
+        em0.destroy();
+        x3 = this.emy.getAt(this.emy.length - 1).x + this.fdx();
+        return this.make_1_emy(x3, this.pm.y[this.gm.rnd.integerInRange(1, 2)]);
+      }
+    };
+
     Enemies.prototype.len = function() {
       return this.emy.children.length;
     };
 
     Enemies.prototype.last = function() {
       return this.emy.getAt(this.emy.children.length - 1);
+    };
+
+    Enemies.prototype.fdx = function() {
+      return this.pm.w + this.pm.dx + Math.floor(this.gm.ge.score / 60) * this.pm.dx * this.pm.ddx;
     };
 
     Enemies.prototype.bind = function(spt) {
@@ -229,8 +243,9 @@
 
     Sprite.prototype.collide_emy = function(emy) {
       var ref;
-      if ((this.gm.parameters.pfm.w - 20 < (ref = this.spt.x) && ref < this.gm.parameters.pfm.w)) {
+      if ((this.gm.parameters.pfm.w - 40 < (ref = this.spt.x) && ref < this.gm.parameters.pfm.w - 35)) {
         this.spt.body.velocity.y = this.pm.vy.low;
+        console.log(this._fle_, ': ', this.gm.parameters.pfm.w - 20, this.spt.x, this.gm.parameters.pfm.w - 15);
       }
       if (this.spt.y < this.pm.top) {
         this.spt.body.velocity.y = this.pm.vy.top;
@@ -305,12 +320,14 @@
     }
 
     YourGame.prototype.update = function() {
+      var mess;
       YourGame.__super__.update.call(this);
       this._fle_ = 'Update';
-      this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
-      console.log(this._fle_, ': ', this.spriteO.collide_emy(this.enemiesO.emy));
-      this.cameraO.move(this.spriteO.spt, this.socleO);
-      return this.socleO.move_clouds(this.spriteO.spt);
+      this.game.physics.arcade.collide(this.spriteO.spt, this.bgO.pfm);
+      mess = this.spriteO.collide_emy(this.enemiesO.emy);
+      this.cameraO.move(this.spriteO.spt, this.bgO);
+      this.bgO.move_clouds(this.spriteO.spt);
+      return this.enemiesO.create_destroy();
     };
 
     YourGame.prototype.resetPlayer = function() {
@@ -321,7 +338,7 @@
       YourGame.__super__.create.call(this);
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.world.setBounds(-1000, -1000, 300000, 2000);
-      this.socleO = new Phacker.Game.Socle(this.game);
+      this.bgO = new Phacker.Game.Socle(this.game);
       this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);

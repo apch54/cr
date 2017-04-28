@@ -35,7 +35,7 @@ class Phacker.Game.Socle
 
         #platform
         @pm.pfm =
-            x0: 0 #if @gm.gameOptions.fullscreen then -60 else -100
+            x0: 0
             w:  218
             h:  220
         @pm.pfm.y0 = @pm.bg.h - @pm.pfm.h

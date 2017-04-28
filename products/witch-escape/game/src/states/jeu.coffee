@@ -15,11 +15,13 @@ class @YourGame extends Phacker.GameState
         super() #Required
         @_fle_ = 'Update'
 
-        @game.physics.arcade.collide @spriteO.spt, @socleO.pfm
-        console.log @_fle_,': ',@spriteO.collide_emy(@enemiesO.emy)
+        @game.physics.arcade.collide @spriteO.spt, @bgO.pfm
+        mess = @spriteO.collide_emy(@enemiesO.emy)
+        #console.log @_fle_,': ',mess
 
-        @cameraO.move @spriteO.spt, @socleO
-        @socleO.move_clouds @spriteO.spt
+        @cameraO.move @spriteO.spt, @bgO
+        @bgO.move_clouds @spriteO.spt
+        @enemiesO.create_destroy()
 
     resetPlayer: ->
         console.log "Reset the player"
@@ -30,7 +32,7 @@ class @YourGame extends Phacker.GameState
         @game.physics.startSystem(Phaser.Physics.ARCADE)
         @game.world.setBounds(-1000, -1000, 300000, 2000) # offset x, offset y, w, h
 
-        @socleO = new Phacker.Game.Socle @game
+        @bgO = new Phacker.Game.Socle @game
 
         @enemiesO = new Phacker.Game.Enemies @game
         @spriteO  = new Phacker.Game.Sprite @game
