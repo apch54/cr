@@ -95,17 +95,32 @@
         y0: this.gm.parameters.pfm.y0,
         w: 50,
         h: 24,
-        names: ['enemy2', 'enemy1']
+        names: ['enemy2', 'enemy1'],
+        nb: 7
       };
       this.emy = this.gm.add.physicsGroup();
-      this.make_1_emy(this.pm.x0, this.pm.y0);
+      this.emy.enableBody = true;
+      this.init();
     }
+
+    Enemies.prototype.init = function() {
+      var dx, i, j, ref, results, xx;
+      xx = this.pm.x0;
+      dx = 20 + this.pm.w;
+      results = [];
+      for (i = j = 1, ref = this.pm.nb; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
+        this.make_1_emy(xx, this.pm.y0);
+        console.log(this._fle_, ': ', this.emy.children.length);
+        results.push(xx = this.emy.getAt(this.emy.children.length - 1).x + dx);
+      }
+      return results;
+    };
 
     Enemies.prototype.make_1_emy = function(x, y) {
       var e;
       e = this.emy.create(x, y, this.pm.names[this.gm.rnd.integerInRange(0, 1)]);
       e.body.immovable = true;
-      return console.log(this._fle_, ': ', this.emy.getAt(0));
+      return e.touched = false;
     };
 
     Enemies.prototype.bind = function(spt) {
