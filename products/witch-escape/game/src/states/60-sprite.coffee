@@ -22,7 +22,8 @@ class Phacker.Game.Sprite
         @pm.top = 100                # top boundary
         @pm.mes_emy = "not yet"  # message returned when sprite collide
 
-        #define pm
+        #define sprite
+
         @spt = @gm.add.sprite @pm.x0, @pm.y0  , 'character_sprite'  # 95 x 102
         @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
         @spt.body.setSize(25, 45, 5, 0) # w, h, offset x, offset y
@@ -39,26 +40,33 @@ class Phacker.Game.Sprite
     #.----------.----------
     collide_emy: (emy) -> # collide with enemy
 
+        #at the begining of the game
         # is sprite on platform
         if @gm.parameters.pfm.w - 20 < @spt.x < @gm.parameters.pfm.w
             @spt.body.velocity.y = @pm.vy.low
 
-        #bounce on top
+        #bounce on top ?
         if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top
 
+        #test collision sprite and enemy
         if @gm.physics.arcade.collide(
             @spt, emy
             -> return true
             (spt, emy)-> @when_collide_with_emy(spt, emy)
             @
-        ) then return @pm.mes_emy
+        ) then return @pm.mes_emy # set message
+
         return 'nothing'
 
     #.----------.----------
     when_collide_with_emy:(spt, emy) ->
-        @pm.mes_emy = 'collided'
+
         spt.body.velocity.y = -@pm.vy.low # set velocity BEFORE bouncing
-        console.log @_fle_,': ', spt.y + @pm.h,emy.y
-        return true
+        if @gm.math.fuzzyEqual(spt.y +  @pm.h, emy.y, 6) # max 6 pxl on top enemy
+            @pm.mes_emy = 'good collision'    # set message
+        else
+            @pm.mes_emy = 'bad collision'  # set message
+        # console.log @_fle_,': ', spt.y + @pm.h,emy.y,spt.body.velocity.x
+        return true  # return it has collided
 
 

@@ -16,7 +16,7 @@
       this.pm.cld = {
         x0: -220,
         y0: this.pm.bg.y0,
-        vx: 40,
+        vx: 30,
         w: 768
       };
       this.pm.deco = {
@@ -241,9 +241,12 @@
     };
 
     Sprite.prototype.when_collide_with_emy = function(spt, emy) {
-      this.pm.mes_emy = 'collided';
       spt.body.velocity.y = -this.pm.vy.low;
-      console.log(this._fle_, ': ', spt.y + this.pm.h, emy.y);
+      if (this.gm.math.fuzzyEqual(spt.y + this.pm.h, emy.y, 6)) {
+        this.pm.mes_emy = 'good collision';
+      } else {
+        this.pm.mes_emy = 'bad collision';
+      }
       return true;
     };
 

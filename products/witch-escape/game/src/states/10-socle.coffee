@@ -17,7 +17,7 @@ class Phacker.Game.Socle
         @pm.cld =
             x0: -220 # initial location
             y0: @pm.bg.y0
-            vx: 40
+            vx: 30
             w:  768
 
         @pm.deco = {  x0: 0,  h:  240}
