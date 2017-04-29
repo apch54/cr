@@ -43,7 +43,7 @@ class Phacker.Game.Socle
         @pm.boat =
             w: 115
             h: 80
-        @pm.boat.y0 = @pm.sea.y3_0 - @pm.boat.h + 27
+        @pm.boat.y0 = @pm.sea.y3_0 - @pm.boat.h + 35
         @pm.boat.x0l = @pm.bg.w * .1  # left boat
         @pm.boat.x0r = @pm.bg.w * .6   # leftright
 
@@ -81,7 +81,7 @@ class Phacker.Game.Socle
         #.----------# two boats
         @boatl = @gm.add.sprite @pm.boat.x0l , @pm.boat.y0, 'boat1' # 115x80
         @boatl_tween = @gm.add.tween (@boatl)
-        @boatl_tween.to( {  y:[@pm.boat.y0 - 9, @pm.boat.y0] }, 1600, Phaser.Easing.Linear.None, true, 0, -1 )
+        @boatl_tween.to( {  y:[@pm.boat.y0 - 9, @pm.boat.y0], angle:[7,0]  }, 1600, Phaser.Easing.Linear.None, true, 0, -1 )
 
         @boatr = @gm.add.sprite @pm.boat.x0r , @pm.boat.y0, 'boat1' # 115x80
         @boatr_tween = @gm.add.tween (@boatr)

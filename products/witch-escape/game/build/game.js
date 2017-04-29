@@ -44,7 +44,7 @@
         w: 115,
         h: 80
       };
-      this.pm.boat.y0 = this.pm.sea.y3_0 - this.pm.boat.h + 27;
+      this.pm.boat.y0 = this.pm.sea.y3_0 - this.pm.boat.h + 35;
       this.pm.boat.x0l = this.pm.bg.w * .1;
       this.pm.boat.x0r = this.pm.bg.w * .6;
       this.draw_bg();
@@ -69,7 +69,8 @@
       this.boatl = this.gm.add.sprite(this.pm.boat.x0l, this.pm.boat.y0, 'boat1');
       this.boatl_tween = this.gm.add.tween(this.boatl);
       this.boatl_tween.to({
-        y: [this.pm.boat.y0 - 9, this.pm.boat.y0]
+        y: [this.pm.boat.y0 - 9, this.pm.boat.y0],
+        angle: [7, 0]
       }, 1600, Phaser.Easing.Linear.None, true, 0, -1);
       this.boatr = this.gm.add.sprite(this.pm.boat.x0r, this.pm.boat.y0, 'boat1');
       this.boatr_tween = this.gm.add.tween(this.boatr);

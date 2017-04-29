@@ -5,8 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/10-socle.coffee" afterPath="$PROJECT_DIR$/src/states/10-socle.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/60-sprite.coffee" afterPath="$PROJECT_DIR$/src/states/60-sprite.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/jeu.coffee" afterPath="$PROJECT_DIR$/src/states/jeu.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +15,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.31617114">
+    <splitter split-orientation="horizontal" split-proportion="0.44044557">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="50-mouse.coffee" pinned="false" current-in-tab="false">
@@ -33,7 +31,7 @@
           <file leaf-file-name="60-sprite.coffee" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/states/60-sprite.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="504">
+                <state relative-caret-position="152">
                   <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
                   <folding />
                 </state>
@@ -47,7 +45,7 @@
           <file leaf-file-name="jeu.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
+                <state relative-caret-position="414">
                   <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
                   <folding />
                 </state>
@@ -57,7 +55,7 @@
           <file leaf-file-name="20-enemies.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/states/20-enemies.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="332">
+                <state relative-caret-position="1080">
                   <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
                   <folding />
                 </state>
@@ -67,8 +65,8 @@
           <file leaf-file-name="10-socle.coffee" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/states/10-socle.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="452">
-                  <caret line="83" column="46" lean-forward="false" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+                <state relative-caret-position="520">
+                  <caret line="87" column="60" lean-forward="false" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
                   <folding />
                 </state>
               </provider>
@@ -133,8 +131,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="496" />
-    <option name="y" value="81" />
+    <option name="x" value="491" />
+    <option name="y" value="24" />
     <option name="width" value="1337" />
     <option name="height" value="921" />
   </component>
@@ -210,6 +208,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -242,7 +241,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -377,7 +375,8 @@
       <workItem from="1493384649383" duration="7496000" />
       <workItem from="1493402290530" duration="4088000" />
       <workItem from="1493453609188" duration="1645000" />
-      <workItem from="1493464220155" duration="4229000" />
+      <workItem from="1493464220155" duration="4248000" />
+      <workItem from="1493496971902" duration="926000" />
     </task>
     <task id="LOCAL-00001" summary="first commit from phpstorm">
       <created>1493209767341</created>
@@ -519,14 +518,21 @@
       <option name="project" value="LOCAL" />
       <updated>1493455224446</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="boats">
+      <created>1493468461928</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1493468461928</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71520000" />
+    <option name="totallyTimeSpent" value="72465000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="496" y="81" width="1337" height="921" extended-state="0" />
+    <frame x="491" y="24" width="1337" height="921" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -534,13 +540,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19035533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19035533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -914,7 +920,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/20-enemies.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
+        <state relative-caret-position="1080">
           <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
           <folding />
         </state>
@@ -930,7 +936,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/60-sprite.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
+        <state relative-caret-position="152">
           <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
           <folding />
         </state>
@@ -938,7 +944,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="414">
           <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding />
         </state>
@@ -946,8 +952,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/10-socle.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="83" column="46" lean-forward="false" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+        <state relative-caret-position="520">
+          <caret line="87" column="60" lean-forward="false" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
           <folding />
         </state>
       </provider>
