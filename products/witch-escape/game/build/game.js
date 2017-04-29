@@ -228,7 +228,7 @@
         top: 120
       };
       this.pm.vy;
-      this.pm.dvx0 = this.pm.vx0 / 2;
+      this.pm.dvx0 = this.pm.vx0 / 1.5;
       this.pm.top = this.gm.gameOptions.fullscreen ? 140 : 90;
       this.pm.mes_emy = "not yet";
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
@@ -323,10 +323,10 @@
       var mess;
       YourGame.__super__.update.call(this);
       this._fle_ = 'Update';
-      this.game.physics.arcade.collide(this.spriteO.spt, this.bgO.pfm);
+      this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
       mess = this.spriteO.collide_emy(this.enemiesO.emy);
-      this.cameraO.move(this.spriteO.spt, this.bgO);
-      this.bgO.move_clouds(this.spriteO.spt);
+      this.cameraO.move(this.spriteO.spt, this.socleO);
+      this.socleO.move_clouds(this.spriteO.spt);
       return this.enemiesO.create_destroy();
     };
 
@@ -338,7 +338,7 @@
       YourGame.__super__.create.call(this);
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.world.setBounds(-1000, -1000, 300000, 2000);
-      this.bgO = new Phacker.Game.Socle(this.game);
+      this.socleO = new Phacker.Game.Socle(this.game);
       this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);

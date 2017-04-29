@@ -18,7 +18,7 @@ class Phacker.Game.Sprite
         @pm.g   = 350                 # gravity
         @pm.vy  = {low: -500,   top: 120}    # velocity on collide enemy
         @pm.vy
-        @pm.dvx0= @pm.vx0 / 2        # velocity variation on tap
+        @pm.dvx0= @pm.vx0 / 1.5         # velocity variation on tap
         @pm.top = if @gm.gameOptions.fullscreen then 140 else 90               # top boundary
         @pm.mes_emy = "not yet"  # message returned when sprite collide
 
