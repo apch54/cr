@@ -130,13 +130,23 @@
     };
 
     Enemies.prototype.create_destroy = function() {
-      var em0, x3;
+      var em0, xy;
       em0 = this.emy.getAt(0);
       if (this.gm.camera.x > em0.x + this.pm.w) {
         em0.destroy();
-        x3 = this.emy.getAt(this.emy.length - 1).x + this.fdx();
-        return this.make_1_emy(x3, this.pm.y[this.gm.rnd.integerInRange(1, 2)]);
       }
+      xy = this.rules(this.emy.getAt(this.emy.length - 1).x);
+      return this.make_1_emy(xy.x, xy.y);
+    };
+
+    Enemies.prototype.rules = function(x) {
+      var xx, yy;
+      xx = x + this.pm.w + this.pm.dx + Math.floor(this.gm.ge.score / 60) * this.pm.dx * this.pm.ddx;
+      yy = this.pm.y[this.gm.rnd.integerInRange(1, 2)];
+      return {
+        x: xx,
+        y: yy
+      };
     };
 
     Enemies.prototype.len = function() {

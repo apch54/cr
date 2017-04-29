@@ -27,10 +27,10 @@ class Phacker.Game.Enemies
     init:() ->
         dx = @fdx() # compute intervall between 2 sweepers: enemies @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
 
-        #first sweeper
+        #first sweeper (emy)
         @make_1_emy(@pm.x0, @pm.y0)
-        xx =  @pm.x0 + dx
 
+        xx =  @pm.x0 + dx
         for i in [2..@pm.nb]
             yy = @pm.y[@gm.rnd.integerInRange(1,2)]
             @make_1_emy(xx, yy)
@@ -51,16 +51,20 @@ class Phacker.Game.Enemies
     # create_destroy enemies
     #----------.----------
     create_destroy: () ->
-
         em0 = @emy.getAt(0)
+        if  @gm.camera.x > em0.x + @pm.w then  em0.destroy()
 
-        if  @gm.camera.x > em0.x + @pm.w
-            em0.destroy()
+        xy = @rules @emy.getAt(@emy.length - 1).x # x of last emy
+        @make_1_emy(xy.x, xy.y)
 
-            x3 = @emy.getAt(@emy.length - 1).x  + @fdx()
-            @make_1_emy(x3,  @pm.y[@gm.rnd.integerInRange(1,2)])
-#
-#            if y_nd_bn.bn then @bnsO.make_bonus @pm.last_x + @pm.w, @pm.y0
+
+    #.----------.----------
+    # rules of game : determine x, y between 2 sweepers (emy)
+    #.----------.----------
+    rules: (x) ->
+        xx = x + @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
+        yy = @pm.y[@gm.rnd.integerInRange(1,2)]
+        return {x: xx,y: yy}
 
     #.----------.----------
     # some tools
