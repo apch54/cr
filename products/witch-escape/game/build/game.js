@@ -31,8 +31,8 @@
         h2: 59,
         h3: 52
       };
-      this.pm.sea.y3_0 = this.pm.bg.h - this.pm.sea.h1;
-      this.pm.sea.y2_0 = this.pm.bg.h - this.pm.sea.h2;
+      this.pm.sea.y3_0 = this.pm.bg.h - this.pm.sea.h1 - 10;
+      this.pm.sea.y2_0 = this.pm.bg.h - this.pm.sea.h2 - 5;
       this.pm.sea.y1_0 = this.pm.bg.h - this.pm.sea.h3;
       this.pm.pfm = {
         x0: 0,
@@ -40,6 +40,13 @@
         h: 220
       };
       this.pm.pfm.y0 = this.pm.bg.h - this.pm.pfm.h;
+      this.pm.boat = {
+        w: 115,
+        h: 80
+      };
+      this.pm.boat.y0 = this.pm.sea.y3_0 - this.pm.boat.h + 27;
+      this.pm.boat.x0l = this.pm.bg.w * .1;
+      this.pm.boat.x0r = this.pm.bg.w * .6;
       this.draw_bg();
     }
 
@@ -56,27 +63,39 @@
       this.deco2.fixedToCamera = true;
       this.deco1 = this.gm.add.sprite(this.pm.deco.x0, this.pm.deco.y2_0, 'deco_1');
       this.deco1.fixedToCamera = true;
+      this.pfm = this.gm.add.sprite(this.pm.pfm.x0, this.pm.pfm.y0, 'platform');
+      this.gm.physics.arcade.enable(this.pfm, Phaser.Physics.ARCADE);
+      this.pfm.body.immovable = true;
+      this.boatl = this.gm.add.sprite(this.pm.boat.x0l, this.pm.boat.y0, 'boat1');
+      this.boatl_tween = this.gm.add.tween(this.boatl);
+      this.boatl_tween.to({
+        y: [this.pm.boat.y0 - 9, this.pm.boat.y0]
+      }, 1600, Phaser.Easing.Linear.None, true, 0, -1);
+      this.boatr = this.gm.add.sprite(this.pm.boat.x0r, this.pm.boat.y0, 'boat1');
+      this.boatr_tween = this.gm.add.tween(this.boatr);
+      this.boatr_tween.to({
+        y: [this.pm.boat.y0 - 5, this.pm.boat.y0]
+      }, 1000, Phaser.Easing.Linear.None, true, 0, -1);
       this.sea3 = this.gm.add.sprite(this.pm.sea.x0, this.pm.sea.y3_0, 'sea3');
       this.sea3.fixedToCamera = true;
       this.sea2 = this.gm.add.sprite(this.pm.sea.x0, this.pm.sea.y2_0, 'sea2');
       this.sea2.fixedToCamera = true;
       this.sea1 = this.gm.add.sprite(this.pm.sea.x0, this.pm.sea.y1_0, 'sea1');
-      this.sea1.fixedToCamera = true;
-      this.pfm = this.gm.add.sprite(this.pm.pfm.x0, this.pm.pfm.y0, 'platform');
-      this.gm.physics.arcade.enable(this.pfm, Phaser.Physics.ARCADE);
-      return this.pfm.body.immovable = true;
+      return this.sea1.fixedToCamera = true;
     };
 
-    Socle.prototype.move_clouds = function(spt) {
+    Socle.prototype.move_clouds_boats = function(spt) {
       if (spt.x > this.pm.pfm.w) {
         this.cld1.body.velocity.x = this.pm.spt.vx0 - this.pm.cld.vx;
         this.cld2.body.velocity.x = this.pm.spt.vx0 - this.pm.cld.vx;
       }
       if (this.cld1.x + this.pm.cld.w + 70 < spt.x) {
-        return this.cld1.x = this.cld2.x + this.pm.cld.w;
+        this.cld1.x = this.cld2.x + this.pm.cld.w;
       } else if (this.cld2.x + this.pm.cld.w + 70 < spt.x) {
-        return this.cld2.x = this.cld1.x + this.pm.cld.w;
+        this.cld2.x = this.cld1.x + this.pm.cld.w;
       }
+      this.boatl.x = this.gm.camera.x + this.pm.boat.x0l;
+      return this.boatr.x = this.gm.camera.x + this.pm.boat.x0r;
     };
 
     return Socle;
@@ -255,7 +274,6 @@
       var ref;
       if ((this.gm.parameters.pfm.w - 40 < (ref = this.spt.x) && ref < this.gm.parameters.pfm.w - 35)) {
         this.spt.body.velocity.y = this.pm.vy.low;
-        console.log(this._fle_, ': ', this.gm.parameters.pfm.w - 20, this.spt.x, this.gm.parameters.pfm.w - 15);
       }
       if (this.spt.y < this.pm.top) {
         this.spt.body.velocity.y = this.pm.vy.top;
@@ -336,7 +354,7 @@
       this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
       mess = this.spriteO.collide_emy(this.enemiesO.emy);
       this.cameraO.move(this.spriteO.spt, this.socleO);
-      this.socleO.move_clouds(this.spriteO.spt);
+      this.socleO.move_clouds_boats(this.spriteO.spt);
       return this.enemiesO.create_destroy();
     };
 

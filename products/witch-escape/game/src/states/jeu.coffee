@@ -20,7 +20,7 @@ class @YourGame extends Phacker.GameState
         #console.log @_fle_,': ',mess
 
         @cameraO.move @spriteO.spt, @socleO
-        @socleO.move_clouds @spriteO.spt
+        @socleO.move_clouds_boats @spriteO.spt
         @enemiesO.create_destroy()
 
     resetPlayer: ->
