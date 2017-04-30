@@ -33,10 +33,10 @@ class @YourGame extends Phacker.GameState
         @game.world.setBounds(-1000, -1000, 300000, 2000) # offset x, offset y, w, h
 
         @socleO = new Phacker.Game.Socle @game
-
         @enemiesO = new Phacker.Game.Enemies @game
         @spriteO  = new Phacker.Game.Sprite @game
         @mouseO   = new Phacker.Game.Mouse @game, @spriteO.spt
+        @ghostO = new Phacker.Game.Ghost(@game, @prite0, @enemiesO)
         @cameraO  = new Phacker.Game.My_camera @game
 
 ###  LOGIC OF YOUR GAME

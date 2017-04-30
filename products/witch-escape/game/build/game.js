@@ -72,7 +72,7 @@
         y: [this.pm.boat.y0 - 9, this.pm.boat.y0],
         angle: [7, 0]
       }, 1600, Phaser.Easing.Linear.None, true, 0, -1);
-      this.boatr = this.gm.add.sprite(this.pm.boat.x0r, this.pm.boat.y0, 'boat1');
+      this.boatr = this.gm.add.sprite(this.pm.boat.x0r, this.pm.boat.y0, 'boat2');
       this.boatr_tween = this.gm.add.tween(this.boatr);
       this.boatr_tween.to({
         y: [this.pm.boat.y0 - 5, this.pm.boat.y0]
@@ -282,14 +282,14 @@
       if (this.gm.physics.arcade.collide(this.spt, emy, function() {
         return true;
       }, function(spt, emy) {
-        return this.when_collide_with_emy(spt, emy);
+        return this.when_collide_emy(spt, emy);
       }, this)) {
         return this.pm.mes_emy;
       }
       return 'nothing';
     };
 
-    Sprite.prototype.when_collide_with_emy = function(spt, emy) {
+    Sprite.prototype.when_collide_emy = function(spt, emy) {
       spt.body.velocity.y = -this.pm.vy.low;
       if (this.gm.math.fuzzyEqual(spt.y + this.pm.h, emy.y, 6)) {
         this.pm.mes_emy = 'good collision';
@@ -300,6 +300,39 @@
     };
 
     return Sprite;
+
+  })();
+
+}).call(this);
+
+
+/*  written by fc on 2017-04-30 */
+
+(function() {
+  Phacker.Game.Ghost = (function() {
+    function Ghost(gm, sptO, emyO) {
+      this.gm = gm;
+      this.sptO = sptO;
+      this.emyO = emyO;
+      this._fle_ = 'Ghost';
+      this.pm = this.gm.parameters.ght = {
+        w: 32,
+        h: 60,
+        vx: -30,
+        x0: this.gm.gameOptions.fullscreen ? 2 * this.gm.parameters.bg.w : this.gm.parameters.bg.w,
+        y: this.gm.parameters.emy.y
+      };
+      this.make_ght();
+    }
+
+    Ghost.prototype.make_ght = function() {
+      this.ght = this.gm.add.sprite(this.pm.x0, this.pm.y[this.gm.rnd.integerInRange(0, this.pm.y.length - 1)], 'floater');
+      this.gm.physics.arcade.enable(this.ght, Phaser.Physics.ARCADE);
+      this.ght.body.setSize(19, 60, 5, 0);
+      return this.ght.body.velocity.x = this.pm.vx;
+    };
+
+    return Ghost;
 
   })();
 
@@ -371,6 +404,7 @@
       this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
+      this.ghostO = new Phacker.Game.Ghost(this.game, this.prite0, this.enemiesO);
       return this.cameraO = new Phacker.Game.My_camera(this.game);
     };
 

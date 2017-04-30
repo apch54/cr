@@ -34,6 +34,9 @@ class Phacker.Game.Sprite
         @anim_spt = @spt.animations.add 'anim', [0, 1, 2, 3], 15, true
         @spt.animations.play 'anim'
 
+
+
+
     #.----------.----------
     # collide sprite with enemy
     # and test sprite on platform
@@ -54,14 +57,14 @@ class Phacker.Game.Sprite
         if @gm.physics.arcade.collide(
             @spt, emy
             -> return true
-            (spt, emy)-> @when_collide_with_emy(spt, emy)
+            (spt, emy)-> @when_collide_emy(spt, emy)
             @
         ) then return @pm.mes_emy # set message
 
         return 'nothing'
 
     #.----------.----------
-    when_collide_with_emy:(spt, emy) ->
+    when_collide_emy:(spt, emy) ->
 
         spt.body.velocity.y = -@pm.vy.low # set velocity BEFORE bouncing
         if @gm.math.fuzzyEqual(spt.y +  @pm.h, emy.y, 6) # max 6 pxl on top enemy
