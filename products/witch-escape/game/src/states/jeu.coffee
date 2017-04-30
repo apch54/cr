@@ -23,6 +23,9 @@ class @YourGame extends Phacker.GameState
         @socleO.move_clouds_boats @spriteO.spt
         @enemiesO.create_destroy()
 
+        @ghostO.check_x()       # check location on x axis
+        mess2 = @ghostO.check_overlap(@spriteO.spt) #check ghost overlaping sprite
+
     resetPlayer: ->
         console.log "Reset the player"
 
@@ -32,12 +35,14 @@ class @YourGame extends Phacker.GameState
         @game.physics.startSystem(Phaser.Physics.ARCADE)
         @game.world.setBounds(-1000, -1000, 300000, 2000) # offset x, offset y, w, h
 
-        @socleO = new Phacker.Game.Socle @game
-        @enemiesO = new Phacker.Game.Enemies @game
-        @spriteO  = new Phacker.Game.Sprite @game
-        @mouseO   = new Phacker.Game.Mouse @game, @spriteO.spt
-        @ghostO = new Phacker.Game.Ghost(@game, @prite0, @enemiesO)
-        @cameraO  = new Phacker.Game.My_camera @game
+        @socleO     = new Phacker.Game.Socle @game
+        @enemiesO   = new Phacker.Game.Enemies @game
+        @spriteO    = new Phacker.Game.Sprite @game
+        @mouseO     = new Phacker.Game.Mouse @game, @spriteO.spt
+        @cameraO    = new Phacker.Game.My_camera @game
+        @ghostO     = new Phacker.Game.Ghost @game
+        #@enemiesO.bind @spriteO, @ghostO
+
 
 ###  LOGIC OF YOUR GAME
 # Examples buttons actions

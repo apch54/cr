@@ -181,8 +181,9 @@
       return this.pm.w + this.pm.dx + Math.floor(this.gm.ge.score / 60) * this.pm.dx * this.pm.ddx;
     };
 
-    Enemies.prototype.bind = function(spt) {
-      return this.spt = spt;
+    Enemies.prototype.bind = function(sptO, ghtO) {
+      this.sptO = sptO;
+      return this.ghtO = ghtO;
     };
 
     return Enemies;
@@ -310,18 +311,18 @@
 
 (function() {
   Phacker.Game.Ghost = (function() {
-    function Ghost(gm, sptO, emyO) {
+    function Ghost(gm) {
       this.gm = gm;
-      this.sptO = sptO;
-      this.emyO = emyO;
       this._fle_ = 'Ghost';
       this.pm = this.gm.parameters.ght = {
         w: 32,
         h: 60,
         vx: -30,
         x0: this.gm.gameOptions.fullscreen ? 2 * this.gm.parameters.bg.w : this.gm.parameters.bg.w,
-        y: this.gm.parameters.emy.y
+        y0: this.gm.parameters.pfm.y0
       };
+      this.pm.y = [this.pm.y0, this.pm.y0 - 50, this.pm.y0 - 100, this.pm.y0 - 150];
+      this.pm.dx = [this.pm.x0 * 1.2, this.pm.x0 * 1.6, this.pm.x0 * 2];
       this.make_ght();
     }
 
@@ -330,6 +331,24 @@
       this.gm.physics.arcade.enable(this.ght, Phaser.Physics.ARCADE);
       this.ght.body.setSize(19, 60, 5, 0);
       return this.ght.body.velocity.x = this.pm.vx;
+    };
+
+    Ghost.prototype.check_x = function() {
+      if (this.gm.camera.x + 50 > this.ght.x + this.pm.w) {
+        this.ght.x += this.pm.dx[this.gm.rnd.integerInRange(0, this.pm.dx.length - 1)];
+        return this.ght.y = this.pm.y[this.gm.rnd.integerInRange(0, this.pm.y.length - 1)];
+      }
+    };
+
+    Ghost.prototype.check_overlap = function(spt) {
+      var g_bnd, s_bnd;
+      g_bnd = this.ght.getBounds();
+      s_bnd = spt.getBounds();
+      if (Phaser.Rectangle.intersects(s_bnd, g_bnd)) {
+        return 'overlaping';
+      } else {
+        return ' no overlaping';
+      }
     };
 
     return Ghost;
@@ -382,14 +401,16 @@
     }
 
     YourGame.prototype.update = function() {
-      var mess;
+      var mess, mess2;
       YourGame.__super__.update.call(this);
       this._fle_ = 'Update';
       this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
       mess = this.spriteO.collide_emy(this.enemiesO.emy);
       this.cameraO.move(this.spriteO.spt, this.socleO);
       this.socleO.move_clouds_boats(this.spriteO.spt);
-      return this.enemiesO.create_destroy();
+      this.enemiesO.create_destroy();
+      this.ghostO.check_x();
+      return mess2 = this.ghostO.check_overlap(this.spriteO.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {
@@ -404,8 +425,8 @@
       this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
-      this.ghostO = new Phacker.Game.Ghost(this.game, this.prite0, this.enemiesO);
-      return this.cameraO = new Phacker.Game.My_camera(this.game);
+      this.cameraO = new Phacker.Game.My_camera(this.game);
+      return this.ghostO = new Phacker.Game.Ghost(this.game);
     };
 
     return YourGame;

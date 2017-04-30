@@ -52,7 +52,10 @@ class Phacker.Game.Enemies
     #----------.----------
     create_destroy: () ->
         em0 = @emy.getAt(0)
-        if  @gm.camera.x > em0.x + @pm.w then  em0.destroy()
+
+        # destroy enemy  & handle ghost
+        if  @gm.camera.x > em0.x + @pm.w
+            em0.destroy()
 
         xy = @rules @emy.getAt(@emy.length - 1).x # x of last emy
         @make_1_emy(xy.x, xy.y)
@@ -66,6 +69,7 @@ class Phacker.Game.Enemies
         yy = @pm.y[@gm.rnd.integerInRange(1,2)]
         return {x: xx,y: yy}
 
+
     #.----------.----------
     # some tools
     #.----------.----------
@@ -73,5 +77,7 @@ class Phacker.Game.Enemies
     last:-> @emy.getAt( @emy.children.length - 1 ) # compute last enemies
     # compute intervall between 2 sweepers: enemies
     fdx:-> @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
-    bind:(spt)-> @spt = spt
+    bind:(sptO,ghtO )->
+        @sptO = sptO
+        @ghtO = ghtO
 
