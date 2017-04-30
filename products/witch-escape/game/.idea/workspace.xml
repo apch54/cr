@@ -4,9 +4,8 @@
     <list default="true" id="94d17bff-4c34-489f-9d55-8c27c081662b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/20-enemies.coffee" afterPath="$PROJECT_DIR$/src/states/20-enemies.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/40-mouse.coffee" afterPath="$PROJECT_DIR$/src/states/40-mouse.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/60-ghost.coffee" afterPath="$PROJECT_DIR$/src/states/60-ghost.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/jeu.coffee" afterPath="$PROJECT_DIR$/src/states/jeu.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,21 +19,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.6116303">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="40-mouse.coffee" pinned="false" current-in-tab="false">
+          <file leaf-file-name="40-mouse.coffee" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/states/40-mouse.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="13" column="21" lean-forward="false" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="79" />
+                <state relative-caret-position="108">
+                  <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="60-ghost.coffee" pinned="false" current-in-tab="true">
+          <file leaf-file-name="60-ghost.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="684">
-                  <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+                <state relative-caret-position="72">
+                  <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
@@ -124,8 +123,9 @@
         <option value="$PROJECT_DIR$/src/states/60-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/15-ghost.coffee" />
         <option value="$PROJECT_DIR$/src/states/20-enemies.coffee" />
-        <option value="$PROJECT_DIR$/src/states/60-ghost.coffee" />
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
+        <option value="$PROJECT_DIR$/src/states/60-ghost.coffee" />
+        <option value="$PROJECT_DIR$/src/states/40-mouse.coffee" />
       </list>
     </option>
   </component>
@@ -398,7 +398,7 @@
       <workItem from="1493453609188" duration="1645000" />
       <workItem from="1493464220155" duration="4248000" />
       <workItem from="1493496971902" duration="975000" />
-      <workItem from="1493535229657" duration="10528000" />
+      <workItem from="1493535229657" duration="12323000" />
     </task>
     <task id="LOCAL-00001" summary="first commit from phpstorm">
       <created>1493209767341</created>
@@ -561,11 +561,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493542283713</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="ghost overlap sprite">
+      <created>1493547117900</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1493547117900</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83042000" />
+    <option name="totallyTimeSpent" value="84837000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="631" y="131" width="1138" height="921" extended-state="0" />
@@ -621,7 +628,8 @@
     <MESSAGE value="boats" />
     <MESSAGE value=" angle" />
     <MESSAGE value="ghost" />
-    <option name="LAST_COMMIT_MESSAGE" value="ghost" />
+    <MESSAGE value="ghost overlap sprite" />
+    <option name="LAST_COMMIT_MESSAGE" value="ghost overlap sprite" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -949,14 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/40-mouse.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="21" lean-forward="false" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/10-socle.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -981,18 +981,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/40-mouse.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>

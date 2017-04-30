@@ -307,7 +307,7 @@
 }).call(this);
 
 
-/*  written by fc on 2017-04-30 */
+/*  written by fc on 2017-04-30 : Ghost object */
 
 (function() {
   Phacker.Game.Ghost = (function() {
