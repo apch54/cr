@@ -6,7 +6,7 @@ class Phacker.Game.Socle
         @pm = @gm.parameters = {}
 
         # more easy to define here some sprte's parameters
-        @pm.spt = { vx0: 110}
+        @pm.spt = { vx0: 120}
 
         @pm.bg = # background
             x0: 0 # initial location
@@ -26,12 +26,12 @@ class Phacker.Game.Socle
 
         @pm.sea =
             x0:  0 # initial location
-            h1:  64 # seas have'nt same height
+            h1:  52 # seas have'nt same height
             h2:  59
-            h3:  52
-        @pm.sea.y3_0 = @pm.bg.h - @pm.sea.h1  - 10 #sea3
-        @pm.sea.y2_0 = @pm.bg.h - @pm.sea.h2 - 5 #sea2
-        @pm.sea.y1_0 = @pm.bg.h - @pm.sea.h3   #sea1
+            h3:  64
+        @pm.sea.y3_0 = @pm.bg.h - @pm.sea.h3  - 10  #sea3
+        @pm.sea.y2_0 = @pm.bg.h - @pm.sea.h2  - 5 #sea2
+        @pm.sea.y1_0 = @pm.bg.h - @pm.sea.h1  #sea1
 
         #platform
         @pm.pfm =
@@ -54,6 +54,7 @@ class Phacker.Game.Socle
     #.----------.----------
 
     draw_bg: ->
+
         #.----------# background
         @bg = @gm.add.sprite @pm.bg.x0, @pm.bg.y0, 'bg_gameplay' # 768x500
         @bg.fixedToCamera = true
@@ -86,7 +87,6 @@ class Phacker.Game.Socle
         @boatr = @gm.add.sprite @pm.boat.x0r , @pm.boat.y0, 'boat2' # 115x80
         @boatr_tween = @gm.add.tween (@boatr)
         @boatr_tween.to( {  y:[@pm.boat.y0 - 5, @pm.boat.y0] }, 1000, Phaser.Easing.Linear.None, true, 0, -1 )
-
 
         #.----------#three seas
         @sea3 = @gm.add.sprite @pm.sea.x0, @pm.sea.y3_0, 'sea3' # 768x64

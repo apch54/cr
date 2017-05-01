@@ -1,9 +1,10 @@
 ###  written by fc on 2017-04-25  ###
-#    ___                _   _
-#   / __|  _ __   _ _  (_) | |_   ___
-#   \__ \ | '_ \ | '_| | | |  _| / -_)
-#   |___/ | .__/ |_|   |_|  \__| \___|
-#         |_|
+#                 _ _
+#     ____ __ _ _(_) |_ ___
+#    (_-< '_ \ '_| |  _/ -_)
+#    /__/ .__/_| |_|\__\___|
+#       |_|
+
 class Phacker.Game.Sprite
 
     constructor: (@gm) ->
@@ -17,10 +18,10 @@ class Phacker.Game.Sprite
         @pm.h   = 45                  # height of the sprite
         @pm.g   = 350                 # gravity
         @pm.vy  = {low: -500,   top: 120}    # velocity on collide enemy
-        @pm.vy
         @pm.dvx0= @pm.vx0 * 1       # velocity variation on tap
         @pm.top = if @gm.gameOptions.fullscreen then 140 else 90               # top boundary
         @pm.mes_emy = "not yet"  # message returned when sprite collide
+        @pm.lost = false
 
         #define sprite
 
@@ -34,9 +35,6 @@ class Phacker.Game.Sprite
         @anim_spt = @spt.animations.add 'anim', [0, 1, 2, 3], 15, true
         @spt.animations.play 'anim'
 
-
-
-
     #.----------.----------
     # collide sprite with enemy
     # and test sprite on platform
@@ -45,13 +43,15 @@ class Phacker.Game.Sprite
 
         #at the begining of the game
         # is sprite on platform
-
         if @gm.parameters.pfm.w - 40 < @spt.x < @gm.parameters.pfm.w - 35
             @spt.body.velocity.y = @pm.vy.low
             #console.log @_fle_,': ',@gm.parameters.pfm.w - 20,@spt.x ,@gm.parameters.pfm.w - 15
 
-        #bounce on top ?
+        #bounce on top or toolow ?
         if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top
+        else if @spt.y > @gm.parameters.sea.y3_0 + 20 and not @pm.lost
+            @pm.lost = true
+            return 'bad'
 
         #test collision sprite and enemy
         if @gm.physics.arcade.collide(
@@ -61,17 +61,21 @@ class Phacker.Game.Sprite
             @
         ) then return @pm.mes_emy # set message
 
-        return 'nothing'
+        return 'no'
 
     #.----------.----------
     when_collide_emy:(spt, emy) ->
 
         spt.body.velocity.y = -@pm.vy.low # set velocity BEFORE bouncing
         if @gm.math.fuzzyEqual(spt.y +  @pm.h, emy.y, 6) # max 6 pxl on top enemy
-            @pm.mes_emy = 'good collision'    # set message
-        else
-            @pm.mes_emy = 'bad collision'  # set message
+            @pm.mes_emy = 'good'    # set message
+        else if not @pm.lost
+            @pm.lost = on
+            emy.y = -100
+            @pm.mes_emy = 'bad'  # set message
         # console.log @_fle_,': ', spt.y + @pm.h,emy.y,spt.body.velocity.x
         return true  # return it has collided
+
+
 
 

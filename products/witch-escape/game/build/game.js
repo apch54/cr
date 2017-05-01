@@ -5,7 +5,7 @@
       this._fle_ = 'Socle';
       this.pm = this.gm.parameters = {};
       this.pm.spt = {
-        vx0: 110
+        vx0: 120
       };
       this.pm.bg = {
         x0: 0,
@@ -27,13 +27,13 @@
       this.pm.deco.y2_0 = this.pm.bg.h - this.pm.deco.h;
       this.pm.sea = {
         x0: 0,
-        h1: 64,
+        h1: 52,
         h2: 59,
-        h3: 52
+        h3: 64
       };
-      this.pm.sea.y3_0 = this.pm.bg.h - this.pm.sea.h1 - 10;
+      this.pm.sea.y3_0 = this.pm.bg.h - this.pm.sea.h3 - 10;
       this.pm.sea.y2_0 = this.pm.bg.h - this.pm.sea.h2 - 5;
-      this.pm.sea.y1_0 = this.pm.bg.h - this.pm.sea.h3;
+      this.pm.sea.y1_0 = this.pm.bg.h - this.pm.sea.h1;
       this.pm.pfm = {
         x0: 0,
         w: 218,
@@ -169,6 +169,18 @@
       };
     };
 
+    Enemies.prototype.destroy_behind = function(spt) {
+      var e, i, j, ref;
+      for (i = j = 1, ref = this.emy.length; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
+        e = this.emy.getAt(0);
+        if (e.x < spt.x) {
+          e.y = -100;
+        } else {
+          return;
+        }
+      }
+    };
+
     Enemies.prototype.len = function() {
       return this.emy.children.length;
     };
@@ -258,10 +270,10 @@
         low: -500,
         top: 120
       };
-      this.pm.vy;
       this.pm.dvx0 = this.pm.vx0 * 1;
       this.pm.top = this.gm.gameOptions.fullscreen ? 140 : 90;
       this.pm.mes_emy = "not yet";
+      this.pm.lost = false;
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.setSize(25, 45, 5, 0);
@@ -279,6 +291,9 @@
       }
       if (this.spt.y < this.pm.top) {
         this.spt.body.velocity.y = this.pm.vy.top;
+      } else if (this.spt.y > this.gm.parameters.sea.y3_0 + 20 && !this.pm.lost) {
+        this.pm.lost = true;
+        return 'bad';
       }
       if (this.gm.physics.arcade.collide(this.spt, emy, function() {
         return true;
@@ -287,15 +302,17 @@
       }, this)) {
         return this.pm.mes_emy;
       }
-      return 'nothing';
+      return 'no';
     };
 
     Sprite.prototype.when_collide_emy = function(spt, emy) {
       spt.body.velocity.y = -this.pm.vy.low;
       if (this.gm.math.fuzzyEqual(spt.y + this.pm.h, emy.y, 6)) {
-        this.pm.mes_emy = 'good collision';
-      } else {
-        this.pm.mes_emy = 'bad collision';
+        this.pm.mes_emy = 'good';
+      } else if (!this.pm.lost) {
+        this.pm.lost = true;
+        emy.y = -100;
+        this.pm.mes_emy = 'bad';
       }
       return true;
     };
@@ -371,16 +388,12 @@
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
       this.pm.y0 = this.gm.parameters.spt.top + 90;
-      this.make_spt();
-    }
-
-    Laser.prototype.make_spt = function() {
       this.spt = this.gm.add.sprite(-this.gm.parameters.spt.vx0 * this.pm.dv0 * (this.pm.dt + 3), this.pm.y0, 'laser');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.anim_spt = this.spt.animations.add('anim', [0, 1], 25, true);
       this.spt.animations.play('anim');
-      return this.spt.body.velocity.x = this.pm.vx0;
-    };
+      this.spt.body.velocity.x = this.pm.vx0;
+    }
 
     Laser.prototype.check_x = function(witch) {
       if (this.spt.x > this.gm.camera.x + this.gm.parameters.bg.w) {
@@ -409,7 +422,7 @@
       this._fle_ = 'Camera';
       this.pm = this.gm.parameters.cam = {};
       this.pm = {
-        offset: this.gm.gameOptions.fullscreen ? 80 : 180,
+        offset: this.gm.gameOptions.fullscreen ? 80 : 150,
         speed: 4
       };
     }
@@ -446,18 +459,30 @@
       var mess, mess2, mess3;
       YourGame.__super__.update.call(this);
       this._fle_ = 'Update';
-      this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
+      if (this.game.physics.arcade.collide(this.spt, this.socleO.pfm)) {
+        this.spt.body.velocity.x = this.spriteO.pm.vx0;
+      }
       mess = this.spriteO.collide_emy(this.enemiesO.emy);
-      this.cameraO.move(this.spriteO.spt, this.socleO);
-      this.socleO.move_clouds_boats(this.spriteO.spt);
+      if (mess === 'good') {
+        this.win();
+      } else if (mess === 'bad') {
+        this.lostLife();
+      }
+      this.cameraO.move(this.spt, this.socleO);
+      this.socleO.move_clouds_boats(this.spt);
       this.enemiesO.create_destroy();
       this.ghostO.check_x();
-      mess2 = this.ghostO.check_overlap(this.spriteO.spt);
-      return mess3 = this.laserO.check_x(this.spriteO.spt);
+      mess2 = this.ghostO.check_overlap(this.spt);
+      return mess3 = this.laserO.check_x(this.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {
-      return console.log("Reset the player");
+      this.socleO.pfm.x = this.spt.x - this.socleO.pm.pfm.w + 60;
+      this.spt.body.velocity.x = 0;
+      this.spt.body.velocity.y = this.spriteO.pm.vy.low;
+      this.spt.y = this.socleO.pm.pfm.y0 - 70;
+      this.enemiesO.destroy_behind(this.spt);
+      return this.spriteO.pm.lost = false;
     };
 
     YourGame.prototype.create = function() {
@@ -467,6 +492,7 @@
       this.socleO = new Phacker.Game.Socle(this.game);
       this.enemiesO = new Phacker.Game.Enemies(this.game);
       this.spriteO = new Phacker.Game.Sprite(this.game);
+      this.spt = this.spriteO.spt;
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
       this.cameraO = new Phacker.Game.My_camera(this.game);
       this.ghostO = new Phacker.Game.Ghost(this.game);
@@ -479,7 +505,6 @@
 
 
   /*  LOGIC OF YOUR GAME
-   * Examples buttons actions
    *
   lostBtn = @game.add.text(0, 0, "Bad Action");
   lostBtn.inputEnabled = true;
@@ -488,23 +513,7 @@
       @lost()
   ).bind @
   
-  winBtn = @game.add.text(0, 0, "Good Action");
-  winBtn.inputEnabled = true;
-  winBtn.y = @game.height*0.5 - winBtn.height*0.5
-  winBtn.x = @game.width - winBtn.width
-  winBtn.events.onInputDown.add ( ->
-      @win()
-  ).bind @
-  
-  lostLifeBtn = @game.add.text(0, 0, "Lost Life");
-  lostLifeBtn.inputEnabled = true;
-  lostLifeBtn.y = @game.height*0.5 - lostLifeBtn.height*0.5
-  lostLifeBtn.x = @game.width*0.5 - lostLifeBtn.width*0.5
-  lostLifeBtn.events.onInputDown.add ( ->
-      @lostLife()
-  ).bind @
-  
-  bonusBtn = @game.add.text(0, 0, "Bonus");
+      bonusBtn = @game.add.text(0, 0, "Bonus");
   bonusBtn.inputEnabled = true;
   bonusBtn.y = @game.height*0.5 - bonusBtn.height*0.5 + 50
   bonusBtn.x = @game.width - bonusBtn.width
@@ -517,12 +526,6 @@
   if @game.gameOptions.fullscreen
           lostBtn.x = @game.width*0.5 - lostBtn.width*0.5
           lostBtn.y = @game.height*0.25
-  
-          winBtn.x = @game.width*0.5 - winBtn.width*0.5
-          winBtn.y = @game.height*0.5
-  
-          lostLifeBtn.x = @game.width*0.5 - lostLifeBtn.width*0.5
-          lostLifeBtn.y = @game.height*0.75
   
           bonusBtn.x = @game.width*0.5 - winBtn.width*0.5
           bonusBtn.y = @game.height*0.5 + 50

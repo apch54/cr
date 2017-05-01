@@ -1,29 +1,30 @@
 ###  written by fc on 2017-04-30 : Ghost object  ###
+#    _
+#   | |__ _ ______ _ _
+#   | / _` |_ / -_) '_|
+#   |_\__,_/__\___|_|
 
 class Phacker.Game.Laser
 
     constructor: (@gm) ->
         @_fle_ = 'Laser'
 
-        @pm = @gm.parameters.lsr = #ght stands for laser
+        @pm = @gm.parameters.lsr = #lsr stands for laser
             w: 20
             h: 315
             dv0: .7 # relative velocity en percent between sprite & laser
 
             # time of laser apparition in seconds;
-            # not true at the begining (<> 3 sec)
+            # warning : not true at the game begining (<> 3 sec)
             dt: 9
 
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time
         @pm.y0 = @gm.parameters.spt.top + 90
 
-        @make_spt() # draw floater (Ghost, @ght) sprite
-
-    #.----------.----------
-    # draw laser sprite (@ght)
-    #.----------.----------
-    make_spt:->
+        #.----------.----------
+        # draw laser sprite (@ght)
+        #.----------.----------
         # beware the "3 seconds" below : at the begening of game only
         @spt = @gm.add.sprite  -@gm.parameters.spt.vx0 * @pm.dv0 * (@pm.dt + 3) , @pm.y0, 'laser'  #10 x 315
         @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
@@ -34,7 +35,8 @@ class Phacker.Game.Laser
         @spt.body.velocity.x = @pm.vx0
 
     #.----------.----------
-    # check x laser ad set it behind sprite
+    # 1/ check x laser and set it behind sprite
+    # 2/ check collision
     #.----------.----------
     check_x : (witch) ->
         if @spt.x > @gm.camera.x + @gm.parameters.bg.w

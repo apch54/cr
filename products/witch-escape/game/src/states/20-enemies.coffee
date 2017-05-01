@@ -69,6 +69,15 @@ class Phacker.Game.Enemies
         yy = @pm.y[@gm.rnd.integerInRange(1,2)]
         return {x: xx,y: yy}
 
+    #----------.----------
+    # destroy all sweepers(@emy) behind spt.x
+    #----------.----------
+    destroy_behind:(spt)->
+
+        for i in  [1..@emy.length]
+            e = @emy.getAt(0)
+            if e.x < spt.x then e.y = -100
+            else return
 
     #.----------.----------
     # some tools
