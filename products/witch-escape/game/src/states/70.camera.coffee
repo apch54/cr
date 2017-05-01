@@ -12,7 +12,7 @@ class Phacker.Game.My_camera
         @pm = @gm.parameters.cam = {}
 
         @pm =
-            offset: if @gm.gameOptions.fullscreen then 60 else 100   # left offset for camera
+            offset: if @gm.gameOptions.fullscreen then 80 else 180   # left offset for camera
             speed: 4    # cam speed on left
 
     #.----------.----------

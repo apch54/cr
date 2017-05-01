@@ -358,6 +358,46 @@
 }).call(this);
 
 
+/*  written by fc on 2017-04-30 : Ghost object */
+
+(function() {
+  Phacker.Game.Laser = (function() {
+    function Laser(gm) {
+      this.gm = gm;
+      this._fle_ = 'Laser';
+      this.pm = this.gm.parameters.lsr = {
+        w: 20,
+        h: 315,
+        dv0: .5,
+        dt: 10
+      };
+      this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
+      this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
+      this.pm.y0 = this.gm.parameters.spt.top + 90;
+      this.make_spt();
+    }
+
+    Laser.prototype.make_spt = function() {
+      this.spt = this.gm.add.sprite(-this.gm.parameters.spt.vx0 * this.pm.dv0 * (this.pm.dt + 3), this.pm.y0, 'laser');
+      this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
+      this.anim_spt = this.spt.animations.add('anim', [0, 1], 25, true);
+      this.spt.animations.play('anim');
+      return this.spt.body.velocity.x = this.pm.vx0;
+    };
+
+    Laser.prototype.check_x = function(witch) {
+      if (this.spt.x > this.gm.camera.x + this.gm.parameters.bg.w) {
+        return this.spt.x = this.gm.camera.x - this.pm.x0;
+      }
+    };
+
+    return Laser;
+
+  })();
+
+}).call(this);
+
+
 /*  ecrit par fc le 2017-03-31 */
 
 (function() {
@@ -367,7 +407,7 @@
       this._fle_ = 'Camera';
       this.pm = this.gm.parameters.cam = {};
       this.pm = {
-        offset: this.gm.gameOptions.fullscreen ? 60 : 100,
+        offset: this.gm.gameOptions.fullscreen ? 80 : 180,
         speed: 4
       };
     }
@@ -410,7 +450,8 @@
       this.socleO.move_clouds_boats(this.spriteO.spt);
       this.enemiesO.create_destroy();
       this.ghostO.check_x();
-      return mess2 = this.ghostO.check_overlap(this.spriteO.spt);
+      mess2 = this.ghostO.check_overlap(this.spriteO.spt);
+      return this.laserO.check_x(this.spriteO.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {
@@ -426,7 +467,8 @@
       this.spriteO = new Phacker.Game.Sprite(this.game);
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
       this.cameraO = new Phacker.Game.My_camera(this.game);
-      return this.ghostO = new Phacker.Game.Ghost(this.game);
+      this.ghostO = new Phacker.Game.Ghost(this.game);
+      return this.laserO = new Phacker.Game.Laser(this.game);
     };
 
     return YourGame;
