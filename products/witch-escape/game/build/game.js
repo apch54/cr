@@ -341,13 +341,10 @@
     };
 
     Ghost.prototype.check_overlap = function(spt) {
-      var g_bnd, s_bnd;
-      g_bnd = this.ght.getBounds();
-      s_bnd = spt.getBounds();
-      if (Phaser.Rectangle.intersects(s_bnd, g_bnd)) {
-        return 'overlaping';
+      if (Phaser.Rectangle.intersects(this.ght.getBounds(), spt.getBounds())) {
+        return 'overlap';
       } else {
-        return ' no overlaping';
+        return 'no overlap';
       }
     };
 
@@ -368,8 +365,8 @@
       this.pm = this.gm.parameters.lsr = {
         w: 20,
         h: 315,
-        dv0: .5,
-        dt: 10
+        dv0: .7,
+        dt: 1
       };
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
@@ -387,7 +384,12 @@
 
     Laser.prototype.check_x = function(witch) {
       if (this.spt.x > this.gm.camera.x + this.gm.parameters.bg.w) {
-        return this.spt.x = this.gm.camera.x - this.pm.x0;
+        this.spt.x = this.gm.camera.x - this.pm.x0;
+      }
+      if (Phaser.Rectangle.intersects(this.spt.getBounds(), witch.getBounds())) {
+        return 'overlap';
+      } else {
+        return 'no overlap';
       }
     };
 
@@ -441,7 +443,7 @@
     }
 
     YourGame.prototype.update = function() {
-      var mess, mess2;
+      var mess, mess2, mess3;
       YourGame.__super__.update.call(this);
       this._fle_ = 'Update';
       this.game.physics.arcade.collide(this.spriteO.spt, this.socleO.pfm);
@@ -451,7 +453,7 @@
       this.enemiesO.create_destroy();
       this.ghostO.check_x();
       mess2 = this.ghostO.check_overlap(this.spriteO.spt);
-      return this.laserO.check_x(this.spriteO.spt);
+      return mess3 = this.laserO.check_x(this.spriteO.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {

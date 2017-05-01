@@ -8,11 +8,11 @@ class Phacker.Game.Laser
         @pm = @gm.parameters.lsr = #ght stands for laser
             w: 20
             h: 315
-            dv0: .5 # relative velocity en percent between sprite & laser
+            dv0: .7 # relative velocity en percent between sprite & laser
 
             # time of laser apparition in seconds;
             # not true at the begining (<> 3 sec)
-            dt: 10
+            dt: 1
 
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time
@@ -23,7 +23,6 @@ class Phacker.Game.Laser
     #.----------.----------
     # draw laser sprite (@ght)
     #.----------.----------
-
     make_spt:->
         # beware the "3 seconds" below : at the begening of game only
         @spt = @gm.add.sprite  -@gm.parameters.spt.vx0 * @pm.dv0 * (@pm.dt + 3) , @pm.y0, 'laser'  #10 x 315
@@ -40,3 +39,8 @@ class Phacker.Game.Laser
     check_x : (witch) ->
         if @spt.x > @gm.camera.x + @gm.parameters.bg.w
             @spt.x = @gm.camera.x - @pm.x0
+
+        # check collision
+        if Phaser.Rectangle.intersects(@spt.getBounds(), witch.getBounds())
+            return 'overlap'
+        else return 'no overlap'

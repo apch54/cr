@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94d17bff-4c34-489f-9d55-8c27c081662b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/states/65-laser.coffee" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../design/desktop/desktop_gameplay/game_objects/boat1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../design/desktop/desktop_gameplay/game_objects/floater.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/50-sprite.coffee" afterPath="$PROJECT_DIR$/src/states/50-sprite.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/70.camera.coffee" afterPath="$PROJECT_DIR$/src/states/70.camera.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/60-ghost.coffee" afterPath="$PROJECT_DIR$/src/states/60-ghost.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/65-laser.coffee" afterPath="$PROJECT_DIR$/src/states/65-laser.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/jeu.coffee" afterPath="$PROJECT_DIR$/src/states/jeu.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +17,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42246437">
+    <splitter split-orientation="horizontal" split-proportion="0.27074602">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="40-mouse.coffee" pinned="false" current-in-tab="false">
@@ -33,21 +30,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="60-ghost.coffee" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
+          <file leaf-file-name="65-laser.coffee" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/states/65-laser.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="32" column="37" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="32" selection-end-column="37" />
+                <state relative-caret-position="10">
+                  <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="65-laser.coffee" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/states/65-laser.coffee">
+          <file leaf-file-name="60-ghost.coffee" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="244">
-                  <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+                <state relative-caret-position="428">
+                  <caret line="51" column="32" lean-forward="true" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -60,8 +57,8 @@
           <file leaf-file-name="jeu.coffee" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="160">
-                  <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+                <state relative-caret-position="322">
+                  <caret line="27" column="9" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -136,12 +133,12 @@
         <option value="$PROJECT_DIR$/src/states/60-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/15-ghost.coffee" />
         <option value="$PROJECT_DIR$/src/states/20-enemies.coffee" />
-        <option value="$PROJECT_DIR$/src/states/60-ghost.coffee" />
         <option value="$PROJECT_DIR$/src/states/40-mouse.coffee" />
         <option value="$PROJECT_DIR$/src/states/50-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/70.camera.coffee" />
-        <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
         <option value="$PROJECT_DIR$/src/states/65-laser.coffee" />
+        <option value="$PROJECT_DIR$/src/states/60-ghost.coffee" />
+        <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
       </list>
     </option>
   </component>
@@ -163,8 +160,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="507" />
-    <option name="y" value="57" />
+    <option name="x" value="370" />
+    <option name="y" value="47" />
     <option name="width" value="1368" />
     <option name="height" value="921" />
   </component>
@@ -415,7 +412,7 @@
       <workItem from="1493464220155" duration="4248000" />
       <workItem from="1493496971902" duration="975000" />
       <workItem from="1493535229657" duration="12357000" />
-      <workItem from="1493621031979" duration="6908000" />
+      <workItem from="1493621031979" duration="8541000" />
     </task>
     <task id="LOCAL-00001" summary="first commit from phpstorm">
       <created>1493209767341</created>
@@ -592,14 +589,21 @@
       <option name="project" value="LOCAL" />
       <updated>1493550062972</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="laser">
+      <created>1493628782429</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1493628782429</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91779000" />
+    <option name="totallyTimeSpent" value="93412000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="507" y="57" width="1368" height="921" extended-state="0" />
+    <frame x="370" y="47" width="1368" height="921" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -653,7 +657,8 @@
     <MESSAGE value=" angle" />
     <MESSAGE value="ghost" />
     <MESSAGE value="ghost overlap sprite" />
-    <option name="LAST_COMMIT_MESSAGE" value="ghost overlap sprite" />
+    <MESSAGE value="laser" />
+    <option name="LAST_COMMIT_MESSAGE" value="laser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -990,14 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="32" column="37" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="32" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/70.camera.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1022,18 +1019,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
+    <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+        <state relative-caret-position="428">
+          <caret line="51" column="32" lean-forward="true" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/65-laser.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="10">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="27" column="9" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding />
         </state>
       </provider>

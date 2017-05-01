@@ -25,8 +25,10 @@ class @YourGame extends Phacker.GameState
 
         @ghostO.check_x()       # check location on x axis
         mess2 = @ghostO.check_overlap(@spriteO.spt) #check ghost overlaping sprite
+        #console.log @_fle_,': ',mess2
 
-        @laserO.check_x(@spriteO.spt)
+        mess3 = @laserO.check_x(@spriteO.spt)
+        #console.log @_fle_,': ',mess3
 
     resetPlayer: ->
         console.log "Reset the player"

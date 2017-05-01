@@ -36,6 +36,7 @@ class Phacker.Game.Ghost
     # check ghost location for setting visible
     #.----------.----------
     check_x:->
+
         if @gm.camera.x + 50 > @ght.x + @pm.w
             @ght.x += @pm.dx[@gm.rnd.integerInRange(0, @pm.dx.length - 1)]
             @ght.y = @pm.y[@gm.rnd.integerInRange(0, @pm.y.length - 1)]
@@ -45,8 +46,7 @@ class Phacker.Game.Ghost
     # check ghost (@ght) overlaping sprite (spt)
     #.----------.----------
     check_overlap: (spt) ->
-        g_bnd = @ght.getBounds()  # ghost
-        s_bnd =  spt.getBounds()  # sprite bounds
-        if Phaser.Rectangle.intersects(s_bnd, g_bnd)
-            return 'overlaping'
-        else return ' no overlaping'
+
+        if Phaser.Rectangle.intersects( @ght.getBounds(), spt.getBounds() )
+            return 'overlap'
+        else return 'no overlap'
