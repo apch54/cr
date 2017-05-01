@@ -259,7 +259,7 @@
         top: 120
       };
       this.pm.vy;
-      this.pm.dvx0 = this.pm.vx0 / 1.5;
+      this.pm.dvx0 = this.pm.vx0 * 1;
       this.pm.top = this.gm.gameOptions.fullscreen ? 140 : 90;
       this.pm.mes_emy = "not yet";
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
@@ -366,7 +366,7 @@
         w: 20,
         h: 315,
         dv0: .7,
-        dt: 1
+        dt: 9
       };
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
