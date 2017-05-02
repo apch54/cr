@@ -14,7 +14,7 @@ class Phacker.Game.Sprite
         @pm = @gm.parameters.spt
         @pm.x0  = 10                  # initial x location
         @pm.y0  = @gm.parameters.pfm.y0 - 50
-        @pm.w   = 98                  # width of the sprite
+        @pm.w   = 35                  # width of the sprite
         @pm.h   = 45                  # height of the sprite
         @pm.g   = 350                 # gravity
         @pm.vy  = {low: -500,   top: 120}    # velocity on collide enemy

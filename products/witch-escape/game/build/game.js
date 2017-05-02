@@ -172,8 +172,9 @@
     Enemies.prototype.destroy_behind = function(spt) {
       var e, i, j, ref;
       for (i = j = 1, ref = this.emy.length; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-        e = this.emy.getAt(0);
-        if (e.x < spt.x) {
+        e = this.emy.getAt(i - 1);
+        console.log(this._fle_, ': ', e.x, this.gm.parameters.spt.w, spt.x);
+        if (e.x - this.gm.parameters.spt.w < spt.x) {
           e.y = -100;
         } else {
           return;
@@ -263,7 +264,7 @@
       this.pm = this.gm.parameters.spt;
       this.pm.x0 = 10;
       this.pm.y0 = this.gm.parameters.pfm.y0 - 50;
-      this.pm.w = 98;
+      this.pm.w = 35;
       this.pm.h = 45;
       this.pm.g = 350;
       this.pm.vy = {
@@ -473,6 +474,9 @@
       this.enemiesO.create_destroy();
       this.ghostO.check_x();
       mess2 = this.ghostO.check_overlap(this.spt);
+      if (mess2 === 'overlap') {
+        this.winBonus();
+      }
       return mess3 = this.laserO.check_x(this.spt);
     };
 

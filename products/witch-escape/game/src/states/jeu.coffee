@@ -29,7 +29,7 @@ class @YourGame extends Phacker.GameState
 
         @ghostO.check_x()       # check location on x axis
         mess2 = @ghostO.check_overlap @spt #check ghost overlaping sprite
-        #console.log @_fle_,': ',mess2
+        if mess2 is 'overlap' then @winBonus()
 
         mess3 = @laserO.check_x @spt
         #console.log @_fle_,': ',mess3
