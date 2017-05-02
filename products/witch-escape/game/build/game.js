@@ -173,8 +173,7 @@
       var e, i, j, ref;
       for (i = j = 1, ref = this.emy.length; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
         e = this.emy.getAt(i - 1);
-        console.log(this._fle_, ': ', e.x, this.gm.parameters.spt.w, spt.x);
-        if (e.x - this.gm.parameters.spt.w < spt.x) {
+        if (e.x - this.gm.parameters.spt.w - 30 < spt.x) {
           e.y = -100;
         } else {
           return;
@@ -348,7 +347,8 @@
       this.ght = this.gm.add.sprite(this.pm.x0, this.pm.y[this.gm.rnd.integerInRange(0, this.pm.y.length - 1)], 'floater');
       this.gm.physics.arcade.enable(this.ght, Phaser.Physics.ARCADE);
       this.ght.body.setSize(19, 60, 5, 0);
-      return this.ght.body.velocity.x = this.pm.vx;
+      this.ght.body.velocity.x = this.pm.vx;
+      return this.ght.had_bonus = false;
     };
 
     Ghost.prototype.check_x = function() {
@@ -359,11 +359,27 @@
     };
 
     Ghost.prototype.check_overlap = function(spt) {
-      if (Phaser.Rectangle.intersects(this.ght.getBounds(), spt.getBounds())) {
+      if (Phaser.Rectangle.intersects(this.ght.getBounds(), spt.getBounds()) && !this.ght.had_bonus) {
+        this.make_twn_collide();
         return 'overlap';
       } else {
         return 'no overlap';
       }
+    };
+
+    Ghost.prototype.make_twn_collide = function() {
+      var twn_collide;
+      twn_collide = this.gm.add.tween(this.ght);
+      twn_collide.to({
+        alpha: 0,
+        angle: 360,
+        y: 500
+      }, 1500, Phaser.Easing.Linear.None);
+      twn_collide.onComplete.addOnce(function() {
+        this.ght.had_bonus = false;
+        return this.ght.alpha = 1;
+      }, this);
+      return twn_collide.start();
     };
 
     return Ghost;

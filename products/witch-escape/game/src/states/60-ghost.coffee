@@ -31,6 +31,7 @@ class Phacker.Game.Ghost
         @gm.physics.arcade.enable @ght,Phaser.Physics.ARCADE
         @ght.body.setSize(19, 60, 5, 0) # w, h, offset x, offset y
         @ght.body.velocity.x = @pm.vx
+        @ght.had_bonus = off
 
     #.----------.----------
     # check ghost location for setting visible
@@ -47,6 +48,24 @@ class Phacker.Game.Ghost
     #.----------.----------
     check_overlap: (spt) ->
 
-        if Phaser.Rectangle.intersects( @ght.getBounds(), spt.getBounds() )
+        if Phaser.Rectangle.intersects( @ght.getBounds(), spt.getBounds() ) and not @ght.had_bonus
+            @make_twn_collide()
             return 'overlap'
         else return 'no overlap'
+
+    #.----------.----------
+    # tween when ghost collide sprite
+    #.----------.----------
+    make_twn_collide: () ->
+        twn_collide = @gm.add.tween  @ght
+        twn_collide.to(
+            { alpha : 0 , angle : 360, y:  500}
+            1500, Phaser.Easing.Linear.None
+        )
+        twn_collide.onComplete.addOnce(
+            ->
+                @ght.had_bonus = false
+                @ght.alpha = 1
+            @
+        )
+        twn_collide.start()

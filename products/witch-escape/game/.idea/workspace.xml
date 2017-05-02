@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94d17bff-4c34-489f-9d55-8c27c081662b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design/desktop/desktop_gameplay/game_objects/boat2.png" afterPath="$PROJECT_DIR$/../design/desktop/desktop_gameplay/game_objects/boat2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design/mobile/mobile_gameplay/game_objects/boat1.png" afterPath="$PROJECT_DIR$/../design/mobile/mobile_gameplay/game_objects/boat1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design/mobile/mobile_gameplay/game_objects/boat2.png" afterPath="$PROJECT_DIR$/../design/mobile/mobile_gameplay/game_objects/boat2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design/mobile/mobile_gameplay/game_objects/floater.png" afterPath="$PROJECT_DIR$/../design/mobile/mobile_gameplay/game_objects/floater.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../config.php" afterPath="$PROJECT_DIR$/../../../config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/20-enemies.coffee" afterPath="$PROJECT_DIR$/src/states/20-enemies.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/50-sprite.coffee" afterPath="$PROJECT_DIR$/src/states/50-sprite.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/jeu.coffee" afterPath="$PROJECT_DIR$/src/states/jeu.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/60-ghost.coffee" afterPath="$PROJECT_DIR$/src/states/60-ghost.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,11 +34,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="20-enemies.coffee" pinned="false" current-in-tab="true">
+          <file leaf-file-name="20-enemies.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/states/20-enemies.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="140">
-                  <caret line="79" column="20" lean-forward="false" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
+                <state relative-caret-position="288">
+                  <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -68,11 +64,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="60-ghost.coffee" pinned="false" current-in-tab="false">
+          <file leaf-file-name="60-ghost.coffee" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="208">
-                  <caret line="40" column="74" lean-forward="true" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
+                <state relative-caret-position="410">
+                  <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -116,13 +112,13 @@
         <option value="$PROJECT_DIR$/src/states/60-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/15-ghost.coffee" />
         <option value="$PROJECT_DIR$/src/states/40-mouse.coffee" />
-        <option value="$PROJECT_DIR$/src/states/60-ghost.coffee" />
         <option value="$PROJECT_DIR$/src/states/65-laser.coffee" />
         <option value="$PROJECT_DIR$/src/states/70.camera.coffee" />
         <option value="$PROJECT_DIR$/src/states/10-socle.coffee" />
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
         <option value="$PROJECT_DIR$/src/states/50-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/20-enemies.coffee" />
+        <option value="$PROJECT_DIR$/src/states/60-ghost.coffee" />
       </list>
     </option>
   </component>
@@ -144,9 +140,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="183" />
+    <option name="x" value="292" />
     <option name="y" value="69" />
-    <option name="width" value="1525" />
+    <option name="width" value="1561" />
     <option name="height" value="921" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -399,7 +395,7 @@
       <workItem from="1493621031979" duration="8749000" />
       <workItem from="1493630675126" duration="1652000" />
       <workItem from="1493646269264" duration="12311000" />
-      <workItem from="1493704805601" duration="3512000" />
+      <workItem from="1493704805601" duration="5276000" />
     </task>
     <task id="LOCAL-00001" summary="first commit from phpstorm">
       <created>1493209767341</created>
@@ -604,18 +600,25 @@
       <option name="project" value="LOCAL" />
       <updated>1493661085973</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="bug emy life lost">
+      <created>1493708330410</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1493708330410</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111095000" />
+    <option name="totallyTimeSpent" value="112859000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="183" y="69" width="1525" height="921" extended-state="0" />
+    <frame x="292" y="69" width="1561" height="921" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.105367795" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10291262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1012,14 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="40" column="74" lean-forward="true" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1038,8 +1033,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/20-enemies.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="79" column="20" lean-forward="false" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
+        <state relative-caret-position="288">
+          <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/60-ghost.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
           <folding />
         </state>
       </provider>

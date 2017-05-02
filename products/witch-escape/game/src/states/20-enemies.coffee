@@ -76,8 +76,8 @@ class Phacker.Game.Enemies
 
         for i in  [1..@emy.length]
             e = @emy.getAt(i - 1 )
-            console.log @_fle_,': ',e.x , @gm.parameters.spt.w , spt.x
-            if e.x - @gm.parameters.spt.w < spt.x then e.y = -100
+            #console.log @_fle_,': ',e.x , @gm.parameters.spt.w , spt.x
+            if e.x - @gm.parameters.spt.w - 30 < spt.x then e.y = -100
             else return
 
     #.----------.----------
