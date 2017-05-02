@@ -353,7 +353,7 @@
 
     Ghost.prototype.check_x = function() {
       if (this.gm.camera.x + 50 > this.ght.x + this.pm.w) {
-        this.ght.x += this.pm.dx[this.gm.rnd.integerInRange(0, this.pm.dx.length - 1)];
+        this.ght.x += 350;
         return this.ght.y = this.pm.y[this.gm.rnd.integerInRange(0, this.pm.y.length - 1)];
       }
     };
@@ -373,8 +373,8 @@
       twn_collide.to({
         alpha: 0,
         angle: 360,
-        y: 500
-      }, 1500, Phaser.Easing.Linear.None);
+        y: 600
+      }, 1000, Phaser.Easing.Linear.None);
       twn_collide.onComplete.addOnce(function() {
         this.ght.had_bonus = false;
         return this.ght.alpha = 1;
@@ -417,9 +417,9 @@
         this.spt.x = this.gm.camera.x - this.pm.x0;
       }
       if (Phaser.Rectangle.intersects(this.spt.getBounds(), witch.getBounds())) {
-        return 'overlap';
+        return 'loose';
       } else {
-        return 'no overlap';
+        return 'ok';
       }
     };
 

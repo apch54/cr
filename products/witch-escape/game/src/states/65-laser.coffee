@@ -44,5 +44,5 @@ class Phacker.Game.Laser
 
         # check collision
         if Phaser.Rectangle.intersects(@spt.getBounds(), witch.getBounds())
-            return 'overlap'
-        else return 'no overlap'
+            return 'loose'
+        else return 'ok'

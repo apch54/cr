@@ -27,6 +27,7 @@ class Phacker.Game.Ghost
     # draw ghost sprite (@ght)
     #.----------.----------
     make_ght:->
+
         @ght = @gm.add.sprite @pm.x0, @pm.y[@gm.rnd.integerInRange(0,@pm.y.length - 1)] , 'floater'  #32 x 60
         @gm.physics.arcade.enable @ght,Phaser.Physics.ARCADE
         @ght.body.setSize(19, 60, 5, 0) # w, h, offset x, offset y
@@ -39,7 +40,7 @@ class Phacker.Game.Ghost
     check_x:->
 
         if @gm.camera.x + 50 > @ght.x + @pm.w
-            @ght.x += @pm.dx[@gm.rnd.integerInRange(0, @pm.dx.length - 1)]
+            @ght.x += 350 #@pm.dx[@gm.rnd.integerInRange(0, @pm.dx.length - 1)]
             @ght.y = @pm.y[@gm.rnd.integerInRange(0, @pm.y.length - 1)]
 
 
@@ -59,8 +60,8 @@ class Phacker.Game.Ghost
     make_twn_collide: () ->
         twn_collide = @gm.add.tween  @ght
         twn_collide.to(
-            { alpha : 0 , angle : 360, y:  500}
-            1500, Phaser.Easing.Linear.None
+            { alpha : 0 , angle : 360, y:  600}
+            1000, Phaser.Easing.Linear.None
         )
         twn_collide.onComplete.addOnce(
             ->
