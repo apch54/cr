@@ -90,20 +90,25 @@ class Phacker.Game.Socle
 
         #.----------# two boats
         @boatl = @gm.add.sprite @pm.boat.x0l , @pm.boat.y0, 'boat1' # 115x80
-        @boatl_tween = @gm.add.tween (@boatl)
-        @boatl_tween.to( {  y:[@pm.boat.y0 - 9, @pm.boat.y0], angle:[7,0]  }, 1600, Phaser.Easing.Linear.None, true, 0, -1 )
+        @boatl_twn = @gm.add.tween (@boatl)
+        @boatl_twn.to( {  y:[@pm.boat.y0 - 9, @pm.boat.y0], angle:[7,0]  }, 1600, Phaser.Easing.Linear.None, true, 0, -1 )
 
         @boatr = @gm.add.sprite @pm.boat.x0r , @pm.boat.y0, 'boat2' # 115x80
-        @boatr_tween = @gm.add.tween (@boatr)
-        @boatr_tween.to( {  y:[@pm.boat.y0 - 5, @pm.boat.y0] }, 1000, Phaser.Easing.Linear.None, true, 0, -1 )
+        @boatr_twn = @gm.add.tween (@boatr)
+        @boatr_twn.to( {  y:[@pm.boat.y0 - 5, @pm.boat.y0] }, 1000, Phaser.Easing.Linear.None, true, 0, -1 )
 
         #.----------#three seas
         @sea3 = @gm.add.sprite @pm.sea.x0, @pm.sea.y3_0, 'sea3' # 768x64
         @sea3.fixedToCamera = true
         @sea2   = @gm.add.sprite @pm.sea.x0, @pm.sea.y2_0, 'sea2' # 768x59
         @sea2.fixedToCamera = true
+
         @sea1   = @gm.add.sprite @pm.sea.x0, @pm.sea.y1_0, 'sea1' # 768x62
-        @sea1.fixedToCamera = true
+        @gm.physics.arcade.enable @sea1,Phaser.Physics.ARCADE
+        @sea1_twn = @gm.add.tween  @sea1
+        @sea1_twn.to( {  y:[@pm.sea.y1_0 - 7, @pm.sea.y1_0 ] }, 1200, Phaser.Easing.Linear.None, true, 0, -1 )
+
+#@sea1.fixedToCamera = true
 
     #.----------.----------
     # move background clouds and boats
@@ -123,4 +128,6 @@ class Phacker.Game.Socle
         # move boats
         @boatl.x = @gm.camera.x + @pm.boat.x0l
         @boatr.x = @gm.camera.x + @pm.boat.x0r
+
+        @sea1.x = @gm.camera.x
 

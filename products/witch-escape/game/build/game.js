@@ -71,14 +71,14 @@
       this.gm.physics.arcade.enable(this.pfm, Phaser.Physics.ARCADE);
       this.pfm.body.immovable = true;
       this.boatl = this.gm.add.sprite(this.pm.boat.x0l, this.pm.boat.y0, 'boat1');
-      this.boatl_tween = this.gm.add.tween(this.boatl);
-      this.boatl_tween.to({
+      this.boatl_twn = this.gm.add.tween(this.boatl);
+      this.boatl_twn.to({
         y: [this.pm.boat.y0 - 9, this.pm.boat.y0],
         angle: [7, 0]
       }, 1600, Phaser.Easing.Linear.None, true, 0, -1);
       this.boatr = this.gm.add.sprite(this.pm.boat.x0r, this.pm.boat.y0, 'boat2');
-      this.boatr_tween = this.gm.add.tween(this.boatr);
-      this.boatr_tween.to({
+      this.boatr_twn = this.gm.add.tween(this.boatr);
+      this.boatr_twn.to({
         y: [this.pm.boat.y0 - 5, this.pm.boat.y0]
       }, 1000, Phaser.Easing.Linear.None, true, 0, -1);
       this.sea3 = this.gm.add.sprite(this.pm.sea.x0, this.pm.sea.y3_0, 'sea3');
@@ -86,7 +86,11 @@
       this.sea2 = this.gm.add.sprite(this.pm.sea.x0, this.pm.sea.y2_0, 'sea2');
       this.sea2.fixedToCamera = true;
       this.sea1 = this.gm.add.sprite(this.pm.sea.x0, this.pm.sea.y1_0, 'sea1');
-      return this.sea1.fixedToCamera = true;
+      this.gm.physics.arcade.enable(this.sea1, Phaser.Physics.ARCADE);
+      this.sea1_twn = this.gm.add.tween(this.sea1);
+      return this.sea1_twn.to({
+        y: [this.pm.sea.y1_0 - 7, this.pm.sea.y1_0]
+      }, 1200, Phaser.Easing.Linear.None, true, 0, -1);
     };
 
     Socle.prototype.move_clouds_boats = function(spt) {
@@ -100,7 +104,8 @@
         this.cld2.x = this.cld1.x + this.pm.cld.w;
       }
       this.boatl.x = this.gm.camera.x + this.pm.boat.x0l;
-      return this.boatr.x = this.gm.camera.x + this.pm.boat.x0r;
+      this.boatr.x = this.gm.camera.x + this.pm.boat.x0r;
+      return this.sea1.x = this.gm.camera.x;
     };
 
     return Socle;
