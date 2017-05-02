@@ -6,7 +6,7 @@
 
 class Phacker.Game.Laser
 
-    constructor: (@gm) ->
+    constructor: (@gm,@wchO) -> # wth stands for "witch object" not to confuse with that spritr
         @_fle_ = 'Laser'
 
         @pm = @gm.parameters.lsr = #lsr stands for laser
@@ -43,8 +43,9 @@ class Phacker.Game.Laser
         if @spt.x > @gm.camera.x + @gm.parameters.bg.w
             @spt.x = @gm.camera.x - @pm.x0
 
-        # check collision
+        # check collision, stop witch sprite and return 'bad'
         if Phaser.Rectangle.intersects(@spt.getBounds(), witch.getBounds()) and not @gm.parameters.losting
             @gm.parameters.losting = true
+            @wchO.make_twn_collide() # stop main sprite : witch
             return 'loose'
         else return 'ok'

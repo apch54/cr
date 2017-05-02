@@ -41,8 +41,9 @@ class @YourGame extends Phacker.GameState
         @spt.body.velocity.y = @spriteO.pm.vy.low
         @spt.y = @socleO.pm.pfm.y0 - 70
         @enemiesO.destroy_behind @spt
-        #@spriteO.pm.lost = false
+        @spt.alpha = 1
         #@laserO.spt.had_collided = false
+        @spriteO.spt.body.gravity.y = @spriteO.pm.g
         @game.parameters.losting = false
 
         #console.log "Reset the player", @spriteO.spt.body.velocity.x , @spriteO.pm.vx0
@@ -62,7 +63,7 @@ class @YourGame extends Phacker.GameState
         @mouseO     = new Phacker.Game.Mouse @game, @spriteO.spt
         @cameraO    = new Phacker.Game.My_camera @game
         @ghostO     = new Phacker.Game.Ghost @game
-        @laserO     = new Phacker.Game.Laser @game
+        @laserO     = new Phacker.Game.Laser @game, @spriteO
         #@enemiesO.bind @spriteO, @ghostO
 
 

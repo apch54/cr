@@ -51,6 +51,7 @@ class Phacker.Game.Sprite
         if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top
         else if @spt.y > @gm.parameters.sea.y3_0 + 20 and not @gm.parameters.losting #@pm.lost
             @gm.parameters.losting = on #@pm.lost = true
+            @make_twn_collide()
             return 'bad'
 
         #test collision sprite and enemy
@@ -72,10 +73,31 @@ class Phacker.Game.Sprite
         else if not @gm.parameters.losting #@pm.lost
             @gm.parameters.losting = on #@pm.lost = on
             emy.y = -100
+            @make_twn_collide()
             @pm.mes_emy = 'bad'  # set message
         # console.log @_fle_,': ', spt.y + @pm.h,emy.y,spt.body.velocity.x
         return true  # return it has collided
 
+    #.----------.----------
+    # tween when ghost collide sprite
+    #.----------.----------
+    make_twn_collide: () ->
+        @stop()
+        twn_collide = @gm.add.tween  @spt
+        twn_collide.to(
+            { alpha : 0 , angle : 360, y:  600}
+            1000, Phaser.Easing.Linear.None
+        )
 
+        twn_collide.start()
+
+    #.----------.----------
+    # some tools
+    #.----------.----------
+    # set prite velocity on x & y axises to 0
+    stop:  ->
+        @spt.body.velocity.x = 0
+        @spt.body.velocity.y = 0
+        @spt.body.gravity.y =0
 
 

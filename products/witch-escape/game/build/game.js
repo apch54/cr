@@ -293,6 +293,7 @@
         this.spt.body.velocity.y = this.pm.vy.top;
       } else if (this.spt.y > this.gm.parameters.sea.y3_0 + 20 && !this.gm.parameters.losting) {
         this.gm.parameters.losting = true;
+        this.make_twn_collide();
         return 'bad';
       }
       if (this.gm.physics.arcade.collide(this.spt, emy, function() {
@@ -312,9 +313,28 @@
       } else if (!this.gm.parameters.losting) {
         this.gm.parameters.losting = true;
         emy.y = -100;
+        this.make_twn_collide();
         this.pm.mes_emy = 'bad';
       }
       return true;
+    };
+
+    Sprite.prototype.make_twn_collide = function() {
+      var twn_collide;
+      this.stop();
+      twn_collide = this.gm.add.tween(this.spt);
+      twn_collide.to({
+        alpha: 0,
+        angle: 360,
+        y: 600
+      }, 1000, Phaser.Easing.Linear.None);
+      return twn_collide.start();
+    };
+
+    Sprite.prototype.stop = function() {
+      this.spt.body.velocity.x = 0;
+      this.spt.body.velocity.y = 0;
+      return this.spt.body.gravity.y = 0;
     };
 
     return Sprite;
@@ -394,8 +414,9 @@
 
 (function() {
   Phacker.Game.Laser = (function() {
-    function Laser(gm) {
+    function Laser(gm, wchO) {
       this.gm = gm;
+      this.wchO = wchO;
       this._fle_ = 'Laser';
       this.pm = this.gm.parameters.lsr = {
         w: 20,
@@ -419,6 +440,7 @@
       }
       if (Phaser.Rectangle.intersects(this.spt.getBounds(), witch.getBounds()) && !this.gm.parameters.losting) {
         this.gm.parameters.losting = true;
+        this.wchO.make_twn_collide();
         return 'loose';
       } else {
         return 'ok';
@@ -507,6 +529,8 @@
       this.spt.body.velocity.y = this.spriteO.pm.vy.low;
       this.spt.y = this.socleO.pm.pfm.y0 - 70;
       this.enemiesO.destroy_behind(this.spt);
+      this.spt.alpha = 1;
+      this.spriteO.spt.body.gravity.y = this.spriteO.pm.g;
       return this.game.parameters.losting = false;
     };
 
@@ -521,7 +545,7 @@
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
       this.cameraO = new Phacker.Game.My_camera(this.game);
       this.ghostO = new Phacker.Game.Ghost(this.game);
-      return this.laserO = new Phacker.Game.Laser(this.game);
+      return this.laserO = new Phacker.Game.Laser(this.game, this.spriteO);
     };
 
     return YourGame;
