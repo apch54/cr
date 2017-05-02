@@ -40,7 +40,7 @@ class Phacker.Game.Ghost
     check_x:->
 
         if @gm.camera.x + 50 > @ght.x + @pm.w
-            @ght.x += 350 #@pm.dx[@gm.rnd.integerInRange(0, @pm.dx.length - 1)]
+            @ght.x += @pm.dx[@gm.rnd.integerInRange(0, @pm.dx.length - 1)]
             @ght.y = @pm.y[@gm.rnd.integerInRange(0, @pm.y.length - 1)]
 
 
@@ -51,6 +51,7 @@ class Phacker.Game.Ghost
 
         if Phaser.Rectangle.intersects( @ght.getBounds(), spt.getBounds() ) and not @ght.had_bonus
             @make_twn_collide()
+            @ght.had_bonus = on
             return 'overlap'
         else return 'no overlap'
 

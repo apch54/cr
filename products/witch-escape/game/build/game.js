@@ -353,7 +353,7 @@
 
     Ghost.prototype.check_x = function() {
       if (this.gm.camera.x + 50 > this.ght.x + this.pm.w) {
-        this.ght.x += 350;
+        this.ght.x += this.pm.dx[this.gm.rnd.integerInRange(0, this.pm.dx.length - 1)];
         return this.ght.y = this.pm.y[this.gm.rnd.integerInRange(0, this.pm.y.length - 1)];
       }
     };
@@ -361,6 +361,7 @@
     Ghost.prototype.check_overlap = function(spt) {
       if (Phaser.Rectangle.intersects(this.ght.getBounds(), spt.getBounds()) && !this.ght.had_bonus) {
         this.make_twn_collide();
+        this.ght.had_bonus = true;
         return 'overlap';
       } else {
         return 'no overlap';
@@ -400,11 +401,11 @@
         w: 20,
         h: 315,
         dv0: .7,
-        dt: 9
+        dt: 10
       };
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
-      this.pm.y0 = this.gm.parameters.spt.top + 90;
+      this.pm.y0 = this.gm.parameters.spt.top + 100;
       this.spt = this.gm.add.sprite(-this.gm.parameters.spt.vx0 * this.pm.dv0 * (this.pm.dt + 3), this.pm.y0, 'laser');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.anim_spt = this.spt.animations.add('anim', [0, 1], 25, true);
