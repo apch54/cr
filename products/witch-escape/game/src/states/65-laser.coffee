@@ -16,7 +16,7 @@ class Phacker.Game.Laser
 
             # time of laser apparition in seconds;
             # warning : not true at the game begining (<> 3 sec)
-            dt: 2
+            dt: 8
 
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time

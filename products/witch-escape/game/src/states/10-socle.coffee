@@ -15,7 +15,7 @@ class Phacker.Game.Socle
         @pm.losting = false
 
         # more easy to define here some sprte's parameters
-        @pm.spt = { vx0: 120}
+        @pm.spt = {vx0: @gm.gameOptions.vx0}
 
         @pm.bg = # background
             x0: 0 # initial location
@@ -103,12 +103,13 @@ class Phacker.Game.Socle
         @sea2   = @gm.add.sprite @pm.sea.x0, @pm.sea.y2_0, 'sea2' # 768x59
         @sea2.fixedToCamera = true
 
+        # only sea1 is moving
         @sea1   = @gm.add.sprite @pm.sea.x0, @pm.sea.y1_0, 'sea1' # 768x62
         @gm.physics.arcade.enable @sea1,Phaser.Physics.ARCADE
         @sea1_twn = @gm.add.tween  @sea1
         @sea1_twn.to( {  y:[@pm.sea.y1_0 - 7, @pm.sea.y1_0 ] }, 1200, Phaser.Easing.Linear.None, true, 0, -1 )
 
-#@sea1.fixedToCamera = true
+        #@sea1.fixedToCamera = true
 
     #.----------.----------
     # move background clouds and boats

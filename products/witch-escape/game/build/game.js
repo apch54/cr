@@ -9,7 +9,7 @@
       this.pm = this.gm.parameters = {};
       this.pm.losting = false;
       this.pm.spt = {
-        vx0: 120
+        vx0: this.gm.gameOptions.vx0
       };
       this.pm.bg = {
         x0: 0,
@@ -433,7 +433,7 @@
         w: 20,
         h: 315,
         dv0: .7,
-        dt: 2
+        dt: 8
       };
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;

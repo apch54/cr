@@ -15,6 +15,9 @@ $gameOptions = array(
     'pointBonus' => 10,
 
     //Here You can add new specific parameters
+    'vx0'               => 115,  // velocity sprite
+    'dvx0_per_level    '=> 1.1 , // variation of vx0 per level
+    'dx_step_per_score' => 1.1   // variation of step (sweepers) depending on score( 60)
 
 );
 
