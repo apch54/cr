@@ -1,3 +1,11 @@
+###  written by apch on 2017-04-26  ###
+    
+#       ... --- ...
+#      |          ,----------------------------.
+#      |.===.     | Hello every one ; fine ?   |
+#      {}o o{}    _)---------------------------'
+#   ooO--(_)--Ooo-
+
 class Phacker.Game.Socle
 
     constructor: (@gm) ->

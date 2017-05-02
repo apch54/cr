@@ -1,3 +1,9 @@
+###  written by apch on 2017-04-27enemy  ###
+#         ___
+#        | __|_ _  ___ _ __ _  _
+#        | _|| ' \/ -_) '  \ || |
+#        |___|_||_\___|_|_|_\_, |
+#                           |__/
 class Phacker.Game.Enemies
 
     constructor: (@gm) ->

@@ -1,4 +1,4 @@
-###  written by fc on 2017-04-30 : Ghost object  ###
+###  written by apch  on 2017-04-30 : Ghost object  ###
 #                   .-.
 #                  ( " )
 #               /\_.' '._/\

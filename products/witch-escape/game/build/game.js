@@ -1,3 +1,6 @@
+
+/*  written by apch on 2017-04-26 */
+
 (function() {
   Phacker.Game.Socle = (function() {
     function Socle(gm) {
@@ -106,6 +109,9 @@
 
 }).call(this);
 
+
+/*  written by apch on 2017-04-27enemy */
+
 (function() {
   Phacker.Game.Enemies = (function() {
     function Enemies(gm) {
@@ -206,7 +212,7 @@
 }).call(this);
 
 
-/* fc written on 2017-04-27 */
+/*  written on 2017-04-27 */
 
 (function() {
   Phacker.Game.Mouse = (function() {
@@ -254,7 +260,7 @@
 }).call(this);
 
 
-/*  written by fc on 2017-04-25 */
+/*  written by apch on 2017-04-25 */
 
 (function() {
   Phacker.Game.Sprite = (function() {
@@ -344,7 +350,7 @@
 }).call(this);
 
 
-/*  written by fc on 2017-04-30 : Ghost object */
+/*  written by apch  on 2017-04-30 : Ghost object */
 
 (function() {
   Phacker.Game.Ghost = (function() {
@@ -410,7 +416,7 @@
 }).call(this);
 
 
-/*  written by fc on 2017-04-30 : Ghost object */
+/*  written by apch on 2017-04-30 : Ghost object */
 
 (function() {
   Phacker.Game.Laser = (function() {
@@ -454,7 +460,7 @@
 }).call(this);
 
 
-/*  ecrit par fc le 2017-03-31 */
+/*  apch : le 2017-03-31 */
 
 (function() {
   Phacker.Game.My_camera = (function() {
@@ -551,33 +557,5 @@
     return YourGame;
 
   })(Phacker.GameState);
-
-
-  /*  LOGIC OF YOUR GAME
-   *
-  lostBtn = @game.add.text(0, 0, "Bad Action");
-  lostBtn.inputEnabled = true;
-  lostBtn.y = @game.height*0.5 - lostBtn.height*0.5
-  lostBtn.events.onInputDown.add ( ->
-      @lost()
-  ).bind @
-  
-      bonusBtn = @game.add.text(0, 0, "Bonus");
-  bonusBtn.inputEnabled = true;
-  bonusBtn.y = @game.height*0.5 - bonusBtn.height*0.5 + 50
-  bonusBtn.x = @game.width - bonusBtn.width
-  bonusBtn.events.onInputDown.add ( ->
-      @winBonus()
-  ).bind @
-  
-  #Placement specific for mobile
-  
-  if @game.gameOptions.fullscreen
-          lostBtn.x = @game.width*0.5 - lostBtn.width*0.5
-          lostBtn.y = @game.height*0.25
-  
-          bonusBtn.x = @game.width*0.5 - winBtn.width*0.5
-          bonusBtn.y = @game.height*0.5 + 50
-   */
 
 }).call(this);

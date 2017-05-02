@@ -1,7 +1,7 @@
 #          ____
 #      .-'     '-.
 #   .'     _)\_    '.
-#  / fc    //}       \
+#  /       //}       \
 # |       (_;\        |
 # | >|||---> \`--     |
 #  \      /__/       /
@@ -42,7 +42,6 @@ class @YourGame extends Phacker.GameState
         @spt.y = @socleO.pm.pfm.y0 - 70
         @enemiesO.destroy_behind @spt
         @spt.alpha = 1
-        #@laserO.spt.had_collided = false
         @spriteO.spt.body.gravity.y = @spriteO.pm.g
         @game.parameters.losting = false
 
@@ -67,32 +66,5 @@ class @YourGame extends Phacker.GameState
         #@enemiesO.bind @spriteO, @ghostO
 
 
-###  LOGIC OF YOUR GAME
-#
-lostBtn = @game.add.text(0, 0, "Bad Action");
-lostBtn.inputEnabled = true;
-lostBtn.y = @game.height*0.5 - lostBtn.height*0.5
-lostBtn.events.onInputDown.add ( ->
-    @lost()
-).bind @
-
-    bonusBtn = @game.add.text(0, 0, "Bonus");
-bonusBtn.inputEnabled = true;
-bonusBtn.y = @game.height*0.5 - bonusBtn.height*0.5 + 50
-bonusBtn.x = @game.width - bonusBtn.width
-bonusBtn.events.onInputDown.add ( ->
-    @winBonus()
-).bind @
-
-#Placement specific for mobile
-
-if @game.gameOptions.fullscreen
-        lostBtn.x = @game.width*0.5 - lostBtn.width*0.5
-        lostBtn.y = @game.height*0.25
-
-        bonusBtn.x = @game.width*0.5 - winBtn.width*0.5
-        bonusBtn.y = @game.height*0.5 + 50
-
-###
 
 
