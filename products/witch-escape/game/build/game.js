@@ -4,6 +4,7 @@
       this.gm = gm;
       this._fle_ = 'Socle';
       this.pm = this.gm.parameters = {};
+      this.pm.losting = false;
       this.pm.spt = {
         vx0: 120
       };
@@ -273,7 +274,6 @@
       this.pm.dvx0 = this.pm.vx0 * 1;
       this.pm.top = this.gm.gameOptions.fullscreen ? 140 : 90;
       this.pm.mes_emy = "not yet";
-      this.pm.lost = false;
       this.spt = this.gm.add.sprite(this.pm.x0, this.pm.y0, 'character_sprite');
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.setSize(25, 45, 5, 0);
@@ -291,8 +291,8 @@
       }
       if (this.spt.y < this.pm.top) {
         this.spt.body.velocity.y = this.pm.vy.top;
-      } else if (this.spt.y > this.gm.parameters.sea.y3_0 + 20 && !this.pm.lost) {
-        this.pm.lost = true;
+      } else if (this.spt.y > this.gm.parameters.sea.y3_0 + 20 && !this.gm.parameters.losting) {
+        this.gm.parameters.losting = true;
         return 'bad';
       }
       if (this.gm.physics.arcade.collide(this.spt, emy, function() {
@@ -308,9 +308,9 @@
     Sprite.prototype.when_collide_emy = function(spt, emy) {
       spt.body.velocity.y = -this.pm.vy.low;
       if (this.gm.math.fuzzyEqual(spt.y + this.pm.h, emy.y, 6)) {
-        this.pm.mes_emy = 'good';
-      } else if (!this.pm.lost) {
-        this.pm.lost = true;
+        this.pm.mes_emy = 'win';
+      } else if (!this.gm.parameters.losting) {
+        this.gm.parameters.losting = true;
         emy.y = -100;
         this.pm.mes_emy = 'bad';
       }
@@ -401,7 +401,7 @@
         w: 20,
         h: 315,
         dv0: .7,
-        dt: 10
+        dt: 2
       };
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
@@ -417,7 +417,8 @@
       if (this.spt.x > this.gm.camera.x + this.gm.parameters.bg.w) {
         this.spt.x = this.gm.camera.x - this.pm.x0;
       }
-      if (Phaser.Rectangle.intersects(this.spt.getBounds(), witch.getBounds())) {
+      if (Phaser.Rectangle.intersects(this.spt.getBounds(), witch.getBounds()) && !this.gm.parameters.losting) {
+        this.gm.parameters.losting = true;
         return 'loose';
       } else {
         return 'ok';
@@ -481,7 +482,7 @@
         this.spt.body.velocity.x = this.spriteO.pm.vx0;
       }
       mess = this.spriteO.collide_emy(this.enemiesO.emy);
-      if (mess === 'good') {
+      if (mess === 'win') {
         this.win();
       } else if (mess === 'bad') {
         this.lostLife();
@@ -494,7 +495,10 @@
       if (mess2 === 'overlap') {
         this.winBonus();
       }
-      return mess3 = this.laserO.check_x(this.spt);
+      mess3 = this.laserO.check_x(this.spt);
+      if (mess3 === 'loose') {
+        return this.lostLife();
+      }
     };
 
     YourGame.prototype.resetPlayer = function() {
@@ -503,7 +507,7 @@
       this.spt.body.velocity.y = this.spriteO.pm.vy.low;
       this.spt.y = this.socleO.pm.pfm.y0 - 70;
       this.enemiesO.destroy_behind(this.spt);
-      return this.spriteO.pm.lost = false;
+      return this.game.parameters.losting = false;
     };
 
     YourGame.prototype.create = function() {

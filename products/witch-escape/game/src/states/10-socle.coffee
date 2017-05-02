@@ -4,6 +4,7 @@ class Phacker.Game.Socle
         @_fle_ = 'Socle'
 
         @pm = @gm.parameters = {}
+        @pm.losting = false
 
         # more easy to define here some sprte's parameters
         @pm.spt = { vx0: 120}

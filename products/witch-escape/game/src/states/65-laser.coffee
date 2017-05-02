@@ -16,7 +16,7 @@ class Phacker.Game.Laser
 
             # time of laser apparition in seconds;
             # warning : not true at the game begining (<> 3 sec)
-            dt: 10
+            dt: 2
 
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time
@@ -33,6 +33,7 @@ class Phacker.Game.Laser
         @spt.animations.play 'anim'
 
         @spt.body.velocity.x = @pm.vx0
+        #@spt.had_collided = false
 
     #.----------.----------
     # 1/ check x laser and set it behind sprite
@@ -43,6 +44,7 @@ class Phacker.Game.Laser
             @spt.x = @gm.camera.x - @pm.x0
 
         # check collision
-        if Phaser.Rectangle.intersects(@spt.getBounds(), witch.getBounds())
+        if Phaser.Rectangle.intersects(@spt.getBounds(), witch.getBounds()) and not @gm.parameters.losting
+            @gm.parameters.losting = true
             return 'loose'
         else return 'ok'

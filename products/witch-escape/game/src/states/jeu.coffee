@@ -19,7 +19,7 @@ class @YourGame extends Phacker.GameState
             @spt.body.velocity.x = @spriteO.pm.vx0
 
         mess = @spriteO.collide_emy @enemiesO.emy
-        if mess is 'good' then @win()
+        if mess is 'win' then @win()
         else if mess is 'bad'  then @lostLife()
         #console.log @_fle_,': ',mess
 
@@ -32,6 +32,7 @@ class @YourGame extends Phacker.GameState
         if mess2 is 'overlap' then @winBonus()
 
         mess3 = @laserO.check_x @spt
+        if mess3 is 'loose' then @lostLife()
         #console.log @_fle_,': ',mess3
 
     resetPlayer: ->
@@ -40,7 +41,9 @@ class @YourGame extends Phacker.GameState
         @spt.body.velocity.y = @spriteO.pm.vy.low
         @spt.y = @socleO.pm.pfm.y0 - 70
         @enemiesO.destroy_behind @spt
-        @spriteO.pm.lost = false
+        #@spriteO.pm.lost = false
+        #@laserO.spt.had_collided = false
+        @game.parameters.losting = false
 
         #console.log "Reset the player", @spriteO.spt.body.velocity.x , @spriteO.pm.vx0
 

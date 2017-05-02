@@ -21,7 +21,7 @@ class Phacker.Game.Sprite
         @pm.dvx0= @pm.vx0 * 1       # velocity variation on tap
         @pm.top = if @gm.gameOptions.fullscreen then 140 else 90               # top boundary
         @pm.mes_emy = "not yet"  # message returned when sprite collide
-        @pm.lost = false
+        #@pm.lost = false
 
         #define sprite
 
@@ -49,8 +49,8 @@ class Phacker.Game.Sprite
 
         #bounce on top or toolow ?
         if @spt.y < @pm.top then @spt.body.velocity.y = @pm.vy.top
-        else if @spt.y > @gm.parameters.sea.y3_0 + 20 and not @pm.lost
-            @pm.lost = true
+        else if @spt.y > @gm.parameters.sea.y3_0 + 20 and not @gm.parameters.losting #@pm.lost
+            @gm.parameters.losting = on #@pm.lost = true
             return 'bad'
 
         #test collision sprite and enemy
@@ -68,9 +68,9 @@ class Phacker.Game.Sprite
 
         spt.body.velocity.y = -@pm.vy.low # set velocity BEFORE bouncing
         if @gm.math.fuzzyEqual(spt.y +  @pm.h, emy.y, 6) # max 6 pxl on top enemy
-            @pm.mes_emy = 'good'    # set message
-        else if not @pm.lost
-            @pm.lost = on
+            @pm.mes_emy = 'win'    # set message
+        else if not @gm.parameters.losting #@pm.lost
+            @gm.parameters.losting = on #@pm.lost = on
             emy.y = -100
             @pm.mes_emy = 'bad'  # set message
         # console.log @_fle_,': ', spt.y + @pm.h,emy.y,spt.body.velocity.x
