@@ -66,6 +66,7 @@ class @YourGame extends Phacker.GameState
         @effectO    = new Phacker.Game.Effects @game
 
         @spriteO.bind @effectO
+        @laserO.bind @effectO
 
 
 

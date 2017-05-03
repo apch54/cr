@@ -46,6 +46,12 @@ class Phacker.Game.Laser
         # check collision, stop witch sprite and return 'bad'
         if Phaser.Rectangle.intersects(@spt.getBounds(), witch.getBounds()) and not @gm.parameters.losting
             @gm.parameters.losting = true
+            @effO.play witch
             @wchO.make_twn_collide() # stop main sprite : witch
+
             return 'loose'
-        else return 'ok'
+
+    #.----------.----------
+    # some tools
+    #.----------.----------
+    bind:(effO) -> @effO = effO

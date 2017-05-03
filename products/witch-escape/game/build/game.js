@@ -459,11 +459,14 @@
       }
       if (Phaser.Rectangle.intersects(this.spt.getBounds(), witch.getBounds()) && !this.gm.parameters.losting) {
         this.gm.parameters.losting = true;
+        this.effO.play(witch);
         this.wchO.make_twn_collide();
         return 'loose';
-      } else {
-        return 'ok';
       }
+    };
+
+    Laser.prototype.bind = function(effO) {
+      return this.effO = effO;
     };
 
     return Laser;
@@ -618,7 +621,8 @@
       this.ghostO = new Phacker.Game.Ghost(this.game);
       this.laserO = new Phacker.Game.Laser(this.game, this.spriteO);
       this.effectO = new Phacker.Game.Effects(this.game);
-      return this.spriteO.bind(this.effectO);
+      this.spriteO.bind(this.effectO);
+      return this.laserO.bind(this.effectO);
     };
 
     return YourGame;
