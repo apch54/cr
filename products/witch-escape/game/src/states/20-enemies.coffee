@@ -19,8 +19,7 @@ class Phacker.Game.Enemies
             dx: @gm.gameOptions.dx
             ddx:@gm.gameOptions.dx_step_per_score # dx variation, depending on @gm.ge.score
         #position of enemy (sweeper)
-        @pm.y =  [@pm.y0 + 40 ,@pm.y0, @pm.y0 - 40,@pm.y0 - 80]
-
+        @pm.y =  [@pm.y0 + 25, @pm.y0, @pm.y0 - 25, @pm.y0 - 50, @pm.y0 - 75 ]
 
         @emy = @gm.add.physicsGroup()
         @emy.enableBody = true
@@ -31,6 +30,7 @@ class Phacker.Game.Enemies
     # initialisation of enemies : make nb emy
     #.----------.----------
     init:() ->
+
         dx = @fdx() # compute intervall between 2 sweepers: enemies @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
 
         #first sweeper (emy)
@@ -57,22 +57,30 @@ class Phacker.Game.Enemies
     # create_destroy enemies
     #----------.----------
     create_destroy: () ->
+
         em0 = @emy.getAt(0)
 
         # destroy enemy  & handle ghost
         if  @gm.camera.x > em0.x + @pm.w
             em0.destroy()
 
-        xy = @rules @emy.getAt(@emy.length - 1).x # x of last emy
-        @make_1_emy(xy.x, xy.y)
-
+            xy = @rules @emy.getAt(@emy.length - 1).x # x of last emy
+            @make_1_emy(xy.x, xy.y)
 
     #.----------.----------
     # rules of game : determine x, y between 2 sweepers (emy)
     #.----------.----------
     rules: (x) ->
+
+        # space between 2 sweepers (@emy) depends only on score : 60, 120, 180
         xx = x + @fdx() # @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
-        yy = @pm.y[@gm.rnd.integerInRange(1,2)]
+        if @gm.ge.score < 60
+            yy = @pm.y[@gm.rnd.integerInRange(1,2)]
+        else if @gm.ge.score < 120
+            yy = @pm.y[@gm.rnd.integerInRange(1,3)]
+        else
+            yy = @pm.y[@gm.rnd.integerInRange(0,3)]
+
         return {x: xx,y: yy}
 
     #----------.----------
@@ -93,9 +101,8 @@ class Phacker.Game.Enemies
     len:-> @emy.children.length # len enemy        # compute number of enemies
     last:-> @emy.getAt( @emy.children.length - 1 ) # compute last enemies
 
-    # compute intervall between 2 sweepers: enemies
+    # compute intervall between 2 sweepers: @emy
     fdx:->
-        #@gm.ge.score =61
         #console.log @_fle_,': ',@pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
         @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
 

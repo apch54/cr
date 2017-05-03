@@ -20,14 +20,16 @@ class Phacker.Game.Laser
 
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time
-        @pm.y0 = @gm.parameters.spt.top + 100
+        @pm.y0 = @gm.parameters.spt.top + 115
 
         #.----------.----------
         # draw laser sprite (@ght)
         #.----------.----------
         # beware the "3 seconds" below : at the begening of game only
         @spt = @gm.add.sprite  -@gm.parameters.spt.vx0 * @pm.dv0 * (@pm.dt + 3) , @pm.y0, 'laser'  #10 x 315
+        @spt.scale.setTo(1, .9)
         @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
+
 
         @anim_spt = @spt.animations.add 'anim', [0, 1], 25, true
         @spt.animations.play 'anim'

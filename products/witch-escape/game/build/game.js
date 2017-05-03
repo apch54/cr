@@ -134,7 +134,7 @@
         dx: this.gm.gameOptions.dx,
         ddx: this.gm.gameOptions.dx_step_per_score
       };
-      this.pm.y = [this.pm.y0 + 40, this.pm.y0, this.pm.y0 - 40, this.pm.y0 - 80];
+      this.pm.y = [this.pm.y0 + 25, this.pm.y0, this.pm.y0 - 25, this.pm.y0 - 50, this.pm.y0 - 75];
       this.emy = this.gm.add.physicsGroup();
       this.emy.enableBody = true;
       this.init();
@@ -168,15 +168,21 @@
       em0 = this.emy.getAt(0);
       if (this.gm.camera.x > em0.x + this.pm.w) {
         em0.destroy();
+        xy = this.rules(this.emy.getAt(this.emy.length - 1).x);
+        return this.make_1_emy(xy.x, xy.y);
       }
-      xy = this.rules(this.emy.getAt(this.emy.length - 1).x);
-      return this.make_1_emy(xy.x, xy.y);
     };
 
     Enemies.prototype.rules = function(x) {
       var xx, yy;
       xx = x + this.fdx();
-      yy = this.pm.y[this.gm.rnd.integerInRange(1, 2)];
+      if (this.gm.ge.score < 60) {
+        yy = this.pm.y[this.gm.rnd.integerInRange(1, 2)];
+      } else if (this.gm.ge.score < 120) {
+        yy = this.pm.y[this.gm.rnd.integerInRange(1, 3)];
+      } else {
+        yy = this.pm.y[this.gm.rnd.integerInRange(0, 3)];
+      }
       return {
         x: xx,
         y: yy
@@ -281,7 +287,7 @@
       this.pm.h = 45;
       this.pm.g = 350;
       this.pm.vy = {
-        low: -500,
+        low: -550,
         top: 150
       };
       this.pm.dvx0 = this.pm.vx0 * 1;
@@ -445,8 +451,9 @@
       };
       this.pm.vx0 = this.gm.parameters.spt.vx0 * (1 + this.pm.dv0);
       this.pm.x0 = this.gm.parameters.spt.vx0 * this.pm.dv0 * this.pm.dt;
-      this.pm.y0 = this.gm.parameters.spt.top + 100;
+      this.pm.y0 = this.gm.parameters.spt.top + 115;
       this.spt = this.gm.add.sprite(-this.gm.parameters.spt.vx0 * this.pm.dv0 * (this.pm.dt + 3), this.pm.y0, 'laser');
+      this.spt.scale.setTo(1, .9);
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.anim_spt = this.spt.animations.add('anim', [0, 1], 25, true);
       this.spt.animations.play('anim');
