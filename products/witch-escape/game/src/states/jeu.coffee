@@ -63,7 +63,9 @@ class @YourGame extends Phacker.GameState
         @cameraO    = new Phacker.Game.My_camera @game
         @ghostO     = new Phacker.Game.Ghost @game
         @laserO     = new Phacker.Game.Laser @game, @spriteO
-        #@enemiesO.bind @spriteO, @ghostO
+        @effectO    = new Phacker.Game.Effects @game
+
+        @spriteO.bind @effectO
 
 
 

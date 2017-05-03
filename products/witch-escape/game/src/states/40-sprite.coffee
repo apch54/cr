@@ -53,6 +53,7 @@ class Phacker.Game.Sprite
         else if @spt.y > @gm.parameters.sea.y3_0 + 20 and not @gm.parameters.losting #@pm.lost
             @gm.parameters.losting = on #@pm.lost = true
             @make_twn_collide()
+            @effO.play @spt
             return 'bad'
 
         #test collision sprite and enemy
@@ -75,6 +76,7 @@ class Phacker.Game.Sprite
             @gm.parameters.losting = on #@pm.lost = on
             emy.y = -100
             @make_twn_collide()
+            @effO.play spt
             @pm.mes_emy = 'bad'  # set message
         # console.log @_fle_,': ', spt.y + @pm.h,emy.y,spt.body.velocity.x
         return true  # return it has collided
@@ -99,6 +101,9 @@ class Phacker.Game.Sprite
     stop:  ->
         @spt.body.velocity.x = 0
         @spt.body.velocity.y = 0
-        @spt.body.gravity.y =0
+        @spt.body.gravity.y = 0
+
+    bind:(effO) ->
+        @effO = effO # bind with effect object
 
 

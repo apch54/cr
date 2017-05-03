@@ -307,6 +307,7 @@
       } else if (this.spt.y > this.gm.parameters.sea.y3_0 + 20 && !this.gm.parameters.losting) {
         this.gm.parameters.losting = true;
         this.make_twn_collide();
+        this.effO.play(this.spt);
         return 'bad';
       }
       if (this.gm.physics.arcade.collide(this.spt, emy, function() {
@@ -327,6 +328,7 @@
         this.gm.parameters.losting = true;
         emy.y = -100;
         this.make_twn_collide();
+        this.effO.play(spt);
         this.pm.mes_emy = 'bad';
       }
       return true;
@@ -348,6 +350,10 @@
       this.spt.body.velocity.x = 0;
       this.spt.body.velocity.y = 0;
       return this.spt.body.gravity.y = 0;
+    };
+
+    Sprite.prototype.bind = function(effO) {
+      return this.effO = effO;
     };
 
     return Sprite;
@@ -499,6 +505,58 @@
 }).call(this);
 
 (function() {
+  Phacker.Game.Effects = (function() {
+    function Effects(gm) {
+      this.gm = gm;
+      this._fle_ = 'Effect';
+      this.effects = ['effect1', 'effect3', 'effect2'];
+    }
+
+    Effects.prototype.play = function(obj) {
+      var anim, n;
+      if (this.eff != null) {
+        this.eff.destroy();
+      }
+      n = this.gm.gameOptions.color_effect ? 1 : this.gm.rnd.integerInRange(0, 1);
+      this.eff = this.gm.add.sprite(50, 100, this.effects[n], 2);
+      if (this.gm.gameOptions.color_effect) {
+        this.eff.tint = Math.random() * 0xffffff;
+      }
+      this.eff.anchor.setTo(0.5, 0.5);
+      anim = this.eff.animations.add('explode', [2, 1, 0, 1, 2, 1, 0, 1, 2], 8, false);
+      anim.onComplete.add(function() {
+        return this.eff.destroy();
+      }, this);
+      this.eff.x = obj.x;
+      this.eff.y = obj.y;
+      return this.eff.animations.play('explode');
+    };
+
+    Effects.prototype.play_color_off = function(x, y) {
+      var anim, n;
+      n = this.gm.rnd.integerInRange(1, 1);
+      this.eff = this.gm.add.sprite(50, 100, this.effects[n], 2);
+      this.eff.anchor.setTo(0.5, 0.5);
+      anim = this.eff.animations.add('explode', [2, 1, 0, 1], 8, false);
+      anim.onComplete.add(function() {
+        return this.eff.destroy();
+      }, this);
+      this.eff.x = x;
+      this.eff.y = y;
+      return this.eff.animations.play('explode');
+    };
+
+    Effects.prototype.stop = function() {
+      return this.eff.destroy();
+    };
+
+    return Effects;
+
+  })();
+
+}).call(this);
+
+(function() {
   var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     hasProp = {}.hasOwnProperty;
 
@@ -558,7 +616,9 @@
       this.mouseO = new Phacker.Game.Mouse(this.game, this.spriteO.spt);
       this.cameraO = new Phacker.Game.My_camera(this.game);
       this.ghostO = new Phacker.Game.Ghost(this.game);
-      return this.laserO = new Phacker.Game.Laser(this.game, this.spriteO);
+      this.laserO = new Phacker.Game.Laser(this.game, this.spriteO);
+      this.effectO = new Phacker.Game.Effects(this.game);
+      return this.spriteO.bind(this.effectO);
     };
 
     return YourGame;
