@@ -15,7 +15,11 @@ class Phacker.Game.Socle
         @pm.losting = false
 
         # more easy to define here some sprte's parameters
-        @pm.spt = {vx0: @gm.gameOptions.vx0}
+        @pm.spt =
+            vx0: @gm.gameOptions.vx0
+            dvx0_per_level: @gm.gameOptions.dvx0_per_level
+        @pm.spt.vx0 = @pm.spt.vx0 * Math.pow(@pm.spt.dvx0_per_level,@gm.ge.level)
+        #console.log @_fle_,': ',@pm.spt.vx0, @pm.spt.dvx0_per_level
 
         @pm.bg = # background
             x0: 0 # initial location

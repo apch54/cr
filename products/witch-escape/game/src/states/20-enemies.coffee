@@ -16,8 +16,8 @@ class Phacker.Game.Enemies
             h: 24
             names:['enemy2','enemy1',]
             nb: if @gm.gameOptions.fullscreen  then 4 else 7 # number of enemies in the group
-            dx: 70
-            ddx: .20 # dx variation, depending on @gm.ge.score
+            dx: @gm.gameOptions.dx
+            ddx:@gm.gameOptions.dx_step_per_score # dx variation, depending on @gm.ge.score
         #position of enemy (sweeper)
         @pm.y =  [@pm.y0 + 40 ,@pm.y0, @pm.y0 - 40,@pm.y0 - 80]
 
@@ -71,12 +71,13 @@ class Phacker.Game.Enemies
     # rules of game : determine x, y between 2 sweepers (emy)
     #.----------.----------
     rules: (x) ->
-        xx = x + @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
+        xx = x + @fdx() # @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
         yy = @pm.y[@gm.rnd.integerInRange(1,2)]
         return {x: xx,y: yy}
 
     #----------.----------
-    # destroy all sweepers(@emy) behind spt.x
+    # set invisible all sweepers(@emy) behind spt.x
+    # when  sprite loose
     #----------.----------
     destroy_behind:(spt)->
 
@@ -91,8 +92,13 @@ class Phacker.Game.Enemies
     #.----------.----------
     len:-> @emy.children.length # len enemy        # compute number of enemies
     last:-> @emy.getAt( @emy.children.length - 1 ) # compute last enemies
+
     # compute intervall between 2 sweepers: enemies
-    fdx:-> @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
+    fdx:->
+        #@gm.ge.score =61
+        #console.log @_fle_,': ',@pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
+        @pm.w + @pm.dx + Math.floor(@gm.ge.score / 60) * @pm.dx * @pm.ddx
+
     bind:(sptO,ghtO )->
         @sptO = sptO
         @ghtO = ghtO

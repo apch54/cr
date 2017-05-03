@@ -9,8 +9,10 @@
       this.pm = this.gm.parameters = {};
       this.pm.losting = false;
       this.pm.spt = {
-        vx0: this.gm.gameOptions.vx0
+        vx0: this.gm.gameOptions.vx0,
+        dvx0_per_level: this.gm.gameOptions.dvx0_per_level
       };
+      this.pm.spt.vx0 = this.pm.spt.vx0 * Math.pow(this.pm.spt.dvx0_per_level, this.gm.ge.level);
       this.pm.bg = {
         x0: 0,
         y0: 48,
@@ -129,8 +131,8 @@
         h: 24,
         names: ['enemy2', 'enemy1'],
         nb: this.gm.gameOptions.fullscreen ? 4 : 7,
-        dx: 70,
-        ddx: .20
+        dx: this.gm.gameOptions.dx,
+        ddx: this.gm.gameOptions.dx_step_per_score
       };
       this.pm.y = [this.pm.y0 + 40, this.pm.y0, this.pm.y0 - 40, this.pm.y0 - 80];
       this.emy = this.gm.add.physicsGroup();
@@ -173,7 +175,7 @@
 
     Enemies.prototype.rules = function(x) {
       var xx, yy;
-      xx = x + this.pm.w + this.pm.dx + Math.floor(this.gm.ge.score / 60) * this.pm.dx * this.pm.ddx;
+      xx = x + this.fdx();
       yy = this.pm.y[this.gm.rnd.integerInRange(1, 2)];
       return {
         x: xx,
@@ -280,7 +282,7 @@
       this.pm.g = 350;
       this.pm.vy = {
         low: -500,
-        top: 120
+        top: 150
       };
       this.pm.dvx0 = this.pm.vx0 * 1;
       this.pm.top = this.gm.gameOptions.fullscreen ? 140 : 90;

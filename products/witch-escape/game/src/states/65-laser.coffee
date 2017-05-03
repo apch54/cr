@@ -14,7 +14,7 @@ class Phacker.Game.Laser
             h: 315
             dv0: .7 # relative velocity en percent between sprite & laser
 
-            # time of laser apparition in seconds;
+            # time of laser apparition after diappretion  in seconds;
             # warning : not true at the game begining (<> 3 sec)
             dt: 8
 

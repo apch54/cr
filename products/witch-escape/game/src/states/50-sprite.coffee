@@ -11,14 +11,15 @@ class Phacker.Game.Sprite
         @_fle_ = 'Sprite'
 
         # IMPORTANT : parameters @pm.vx0 is defined in socle
+
         @pm = @gm.parameters.spt
         @pm.x0  = 10                  # initial x location
         @pm.y0  = @gm.parameters.pfm.y0 - 50
         @pm.w   = 35                  # width of the sprite
         @pm.h   = 45                  # height of the sprite
         @pm.g   = 350                 # gravity
-        @pm.vy  = {low: -500,   top: 120}    # velocity on collide enemy
-        @pm.dvx0= @pm.vx0 * 1       # velocity variation on tap
+        @pm.vy  = {low: -500,   top: 150}    # velocity on collide enemy
+        @pm.dvx0= @pm.vx0 * 1         # velocity variation on tap
         @pm.top = if @gm.gameOptions.fullscreen then 140 else 90               # top boundary
         @pm.mes_emy = "not yet"  # message returned when sprite collide
         #@pm.lost = false
