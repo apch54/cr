@@ -20,14 +20,17 @@ class Phacker.Game.Laser
 
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time
-        @pm.y0 = @gm.parameters.spt.top + 115
+        @pm.y0  = @gm.parameters.spt.top + @gm.gameOptions.laser_top
+        @pm.scl = ( @gm.parameters.bg.h - @pm.y0 ) / @pm.h # laser scale on y axis
+        console.log @_fle_,': ',@pm.scl,@pm.h,@gm.parameters.bg.h - @pm.y0
 
-        #.----------.----------
-        # draw laser sprite (@ght)
+
+            #.----------.----------
+        # draw laser sprite
         #.----------.----------
         # beware the "3 seconds" below : at the begening of game only
         @spt = @gm.add.sprite  -@gm.parameters.spt.vx0 * @pm.dv0 * (@pm.dt + 3) , @pm.y0, 'laser'  #10 x 315
-        @spt.scale.setTo(1, .9)
+        @spt.scale.setTo(1, @pm.scl)
         @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
 
 
@@ -41,6 +44,7 @@ class Phacker.Game.Laser
     # 1/ check x laser and set it behind sprite
     # 2/ check collision
     #.----------.----------
+
     check_x : (witch) ->
         if @spt.x > @gm.camera.x + @gm.parameters.bg.w
             @spt.x = @gm.camera.x - @pm.x0

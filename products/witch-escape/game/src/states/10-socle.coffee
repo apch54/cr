@@ -30,12 +30,12 @@ class Phacker.Game.Socle
         @pm.cld =
             x0: -220 # initial location
             y0: @pm.bg.y0
-            vx: 30
+            vx: 35
             w:  768
 
-        @pm.deco = {  x0: 0,  h:  240}
-        @pm.deco.y1_0 = @pm.bg.h - @pm.deco.h - 50 #for deco1
-        @pm.deco.y2_0 = @pm.bg.h - @pm.deco.h   #for deco2
+        @pm.deco = {  x0: -220,  h:  240, w: @pm.bg.w, vx:20 }
+        @pm.deco.y1_0 = @pm.bg.h - @pm.deco.h  #for deco1
+        @pm.deco.y2_0 = @pm.bg.h - @pm.deco.h - 50  #for deco2
 
         @pm.sea =
             x0:  0 # initial location
@@ -81,10 +81,25 @@ class Phacker.Game.Socle
         @cld2.body.velocity.x = -@pm.cld.vx #+ @pm.spt.vx0
 
         #.----------# two decos
-        @deco2 = @gm.add.sprite @pm.deco.x0, @pm.deco.y1_0, 'deco_2' # 768x240
-        @deco2.fixedToCamera = true
-        @deco1 = @gm.add.sprite @pm.deco.x0, @pm.deco.y2_0, 'deco_1'
-        @deco1.fixedToCamera = true
+        # first deco
+        @deco21 = @gm.add.sprite @pm.deco.x0, @pm.deco.y2_0, 'deco_2' # 768x240
+        @gm.physics.arcade.enable @deco21,Phaser.Physics.ARCADE
+        @deco21.body.velocity.x = @pm.deco.vx
+
+        @deco22 = @gm.add.sprite @pm.deco.x0 + @pm.deco.w, @pm.deco.y2_0, 'deco_2' # 768x240
+        @gm.physics.arcade.enable @deco22,Phaser.Physics.ARCADE
+        @deco22.body.velocity.x = @pm.deco.vx
+
+        #second deco
+        #@deco1 = @gm.add.sprite @pm.deco.x0, @pm.deco.y2_0, 'deco_1'
+        #@deco1.fixedToCamera = true
+        @deco11 = @gm.add.sprite @pm.deco.x0, @pm.deco.y1_0, 'deco_1' # 768x240
+        @gm.physics.arcade.enable @deco11,Phaser.Physics.ARCADE
+        @deco11.body.velocity.x = @pm.deco.vx
+
+        @deco12 = @gm.add.sprite @pm.deco.x0 + @pm.deco.w, @pm.deco.y1_0, 'deco_1' # 768x240
+        @gm.physics.arcade.enable @deco12,Phaser.Physics.ARCADE
+        @deco12.body.velocity.x = @pm.deco.vx
 
         #.----------# platform at the begining of the game
         @pfm   = @gm.add.sprite @pm.pfm.x0, @pm.pfm.y0, 'platform' # 218x220
@@ -102,16 +117,23 @@ class Phacker.Game.Socle
         @boatr_twn.to( {  y:[@pm.boat.y0 - 5, @pm.boat.y0] }, 1000, Phaser.Easing.Linear.None, true, 0, -1 )
 
         #.----------#three seas
-        @sea3 = @gm.add.sprite @pm.sea.x0, @pm.sea.y3_0, 'sea3' # 768x64
-        @sea3.fixedToCamera = true
-        @sea2   = @gm.add.sprite @pm.sea.x0, @pm.sea.y2_0, 'sea2' # 768x59
-        @sea2.fixedToCamera = true
+#
 
-        # only sea1 is moving
+        @sea3   = @gm.add.sprite @pm.sea.x0, @pm.sea.y3_0, 'sea3' # 768x62
+        @gm.physics.arcade.enable @sea3,Phaser.Physics.ARCADE
+        @sea3_twn = @gm.add.tween  @sea3
+        @sea3_twn.to( {  y:[@pm.sea.y3_0 - 12, @pm.sea.y3_0 ] }, 3000, Phaser.Easing.Linear.None, true, 0, -1 )
+
+        @sea2   = @gm.add.sprite @pm.sea.x0, @pm.sea.y2_0, 'sea2' # 768x62
+        @gm.physics.arcade.enable @sea2,Phaser.Physics.ARCADE
+        @sea2_twn = @gm.add.tween  @sea2
+        @sea2_twn.to( {  y:[@pm.sea.y2_0 + 5, @pm.sea.y2_0 ] }, 2000, Phaser.Easing.Linear.None, true, 0, -1 )
+
+
         @sea1   = @gm.add.sprite @pm.sea.x0, @pm.sea.y1_0, 'sea1' # 768x62
         @gm.physics.arcade.enable @sea1,Phaser.Physics.ARCADE
         @sea1_twn = @gm.add.tween  @sea1
-        @sea1_twn.to( {  y:[@pm.sea.y1_0 - 7, @pm.sea.y1_0 ] }, 1200, Phaser.Easing.Linear.None, true, 0, -1 )
+        @sea1_twn.to( {  y:[@pm.sea.y1_0 - 5, @pm.sea.y1_0 ] }, 1200, Phaser.Easing.Linear.None, true, 0, -1 )
 
         #@sea1.fixedToCamera = true
 
@@ -130,9 +152,23 @@ class Phacker.Game.Socle
         else if @cld2.x + @pm.cld.w + 70 < spt.x
             @cld2.x = @cld1.x + @pm.cld.w
 
+        #decos' rotation
+        if @deco21.x + @pm.deco.w + 140 < spt.x
+            @deco21.x = @deco22.x + @pm.deco.w
+        else if @deco22.x + @pm.deco.w + 110 < spt.x
+            @deco22.x = @deco21.x + @pm.deco.w
+
+        if @deco11.x + @pm.deco.w + 140  < spt.x
+            @deco11.x = @deco12.x + @pm.deco.w
+        else if @deco12.x + @pm.deco.w + 140  < spt.x
+            @deco12.x = @deco11.x + @pm.deco.w
+
+
         # move boats
         @boatl.x = @gm.camera.x + @pm.boat.x0l
         @boatr.x = @gm.camera.x + @pm.boat.x0r
 
         @sea1.x = @gm.camera.x
+        @sea2.x = @gm.camera.x
+        @sea3.x = @gm.camera.x
 

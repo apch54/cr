@@ -13,13 +13,13 @@ class Phacker.Game.My_camera
 
         @pm =
             offset: if @gm.gameOptions.fullscreen then 80 else 150   # left offset for camera
-            speed: 4    # cam speed on left
+            speed: 5    # cam speed on left
 
     #.----------.----------
     #move camera on left at speed @pm.speed
     #.----------.----------
 
-    move: (spt,socle)->
+    move: (spt, socle)->
         if spt.x < @gm.parameters.pfm.w then return # game begining
         if (@gm.camera.x - spt.x + @pm.offset) < -@pm.speed
             @gm.camera.x += @pm.speed # for time reseting : not all at once

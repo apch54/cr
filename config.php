@@ -17,11 +17,13 @@ $gameOptions = array(
     //Here You can add new specific parameters
     'color_effect'      => true,
     
-    'vx0'               => 120,   // velocity sprite
+    'vx0'               => 135,   // velocity sprite
     'dvx0_per_level'    => 1.15,  // variation of vx0 per level; >1
     
-    'dx'				=> 70, 	 // separation between 2 sweepers (stairs)
-    'dx_step_per_score' => .2    // variation of step (sweepers) depending on score( 60)
+    'dx'				=> 70, 	  // separation between 2 sweepers (stairs)
+    'dx_step_per_score' => .2,    // variation of step (sweepers) depending on score( 60)      
+
+    'laser_top'			=> 135    // top lazer location regarding to top sprite.y ; > 0 down
 
 );
 
