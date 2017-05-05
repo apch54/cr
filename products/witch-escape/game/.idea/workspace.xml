@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94d17bff-4c34-489f-9d55-8c27c081662b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../config.php" afterPath="$PROJECT_DIR$/../../../config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/10-socle.coffee" afterPath="$PROJECT_DIR$/src/states/10-socle.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/60-laser.coffee" afterPath="$PROJECT_DIR$/src/states/60-laser.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/70.camera.coffee" afterPath="$PROJECT_DIR$/src/states/70.camera.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,11 +62,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="10-socle.coffee" pinned="false" current-in-tab="true">
+          <file leaf-file-name="10-socle.coffee" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/states/10-socle.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="443">
-                  <caret line="162" column="44" lean-forward="false" selection-start-line="162" selection-start-column="44" selection-end-line="162" selection-end-column="44" />
+                <state relative-caret-position="2952">
+                  <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="60-laser.coffee" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/states/60-laser.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="18">
+                  <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
                   <folding />
                 </state>
               </provider>
@@ -161,9 +167,9 @@
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
         <option value="$PROJECT_DIR$/src/states/40-sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/20-enemies.coffee" />
-        <option value="$PROJECT_DIR$/src/states/60-laser.coffee" />
         <option value="$PROJECT_DIR$/src/states/70.camera.coffee" />
         <option value="$PROJECT_DIR$/src/states/10-socle.coffee" />
+        <option value="$PROJECT_DIR$/src/states/60-laser.coffee" />
       </list>
     </option>
   </component>
@@ -191,9 +197,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="337" />
-    <option name="y" value="34" />
-    <option name="width" value="1522" />
+    <option name="x" value="330" />
+    <option name="y" value="28" />
+    <option name="width" value="1384" />
     <option name="height" value="921" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -269,6 +275,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -315,7 +322,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -470,7 +476,9 @@
       <workItem from="1493883142224" duration="600000" />
       <workItem from="1493883774387" duration="413000" />
       <workItem from="1493890983588" duration="7730000" />
-      <workItem from="1493916303995" duration="2899000" />
+      <workItem from="1493916303995" duration="2968000" />
+      <workItem from="1493962179730" duration="1494000" />
+      <workItem from="1493970381950" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="first commit from phpstorm">
       <created>1493209767341</created>
@@ -766,11 +774,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493804677209</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="move decos">
+      <created>1493919258648</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1493919258648</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151360000" />
+    <option name="totallyTimeSpent" value="152934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -782,16 +797,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="337" y="34" width="1522" height="921" extended-state="0" />
+    <frame x="330" y="28" width="1384" height="921" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.107569724" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.118421055" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24365482" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24365482" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -813,7 +828,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="socleO" />
     <MESSAGE value="destroy and create emy" />
     <MESSAGE value="socleO jeu" />
     <MESSAGE value="rules" />
@@ -838,7 +852,8 @@
     <MESSAGE value="effect" />
     <MESSAGE value="effect laser" />
     <MESSAGE value="fix bug create_destroy emy" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug create_destroy emy" />
+    <MESSAGE value="move decos" />
+    <option name="LAST_COMMIT_MESSAGE" value="move decos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1173,14 +1188,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/60-laser.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-322">
-          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/50-ghost.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1207,8 +1214,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/10-socle.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="162" column="44" lean-forward="false" selection-start-line="162" selection-start-column="44" selection-end-line="162" selection-end-column="44" />
+        <state relative-caret-position="2952">
+          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/60-laser.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
           <folding />
         </state>
       </provider>

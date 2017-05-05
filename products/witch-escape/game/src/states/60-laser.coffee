@@ -21,6 +21,7 @@ class Phacker.Game.Laser
         @pm.vx0 = @gm.parameters.spt.vx0 * ( 1 + @pm.dv0) # laser velocity on x axis
         @pm.x0  = @gm.parameters.spt.vx0 * @pm.dv0 * @pm.dt # dx between laser and sprte depend of time
         @pm.y0  = @gm.parameters.spt.top + @gm.gameOptions.laser_top
+
         @pm.scl = ( @gm.parameters.bg.h - @pm.y0 ) / @pm.h # laser scale on y axis
         console.log @_fle_,': ',@pm.scl,@pm.h,@gm.parameters.bg.h - @pm.y0
 
